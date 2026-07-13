@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dare to be Me — Xác nhận đơn hàng</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:ital,wght@0,700;0,800;1,500&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #e2dada; --surface: #FFFFFF; --text: #2d2420; --text-muted: #5a4a45;
+    --accent: #c9a882; --accent-soft: rgba(201, 168, 130, 0.18); --border: rgba(45, 36, 32, 0.12);
+    --brand: #80716c; --nav-bg: #2d2420;
+    --font-h: 'Noto Serif Display', serif; --font-b: 'Montserrat', sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-b); background: var(--bg); color: var(--text); line-height: 1.6; padding: 40px 20px; }
+  .container { max-width: 560px; margin: 0 auto; background: var(--surface); padding: 40px 32px; border-radius: 14px; box-shadow: 0 4px 24px rgba(45,36,32,0.13); border: 1px solid var(--border); text-align: center; }
+  .check { width: 64px; height: 64px; background: var(--nav-bg); color: var(--accent); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 32px; margin-bottom: 16px; }
+  h1 { font-family: var(--font-h); font-size: 26px; margin-bottom: 8px; color: var(--text); }
+  .lead { color: var(--text-muted); margin-bottom: 24px; font-size: 15px; }
+  .info { background: #f0e8e4; border: 1px solid var(--border); padding: 16px; border-radius: 8px; text-align: left; margin: 20px 0; }
+  .info-row { display: flex; justify-content: space-between; padding: 6px 0; font-size: 14px; }
+  .steps { text-align: left; margin: 24px 0; }
+  .step { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+  .step:last-child { border-bottom: none; }
+  .step-num { background: var(--brand); color: #fff; min-width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; }
+  .step-text { flex: 1; }
+  .step-title { font-weight: 600; font-size: 15px; margin-bottom: 4px; color: var(--text); }
+  .step-desc { font-size: 14px; color: var(--text-muted); }
+  .step-desc a { color: var(--accent); text-decoration: none; font-weight: 600; }
+  footer { text-align: center; margin-top: 24px; font-size: 13px; color: var(--text-muted); }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="check">✓</div>
+  <h1>Đã nhận thanh toán!</h1>
+  <p class="lead">Cảm ơn bạn đã tham gia Dare to be Me. Đơn hàng đã được xác nhận và tài liệu đã gửi qua email.</p>
+
+  <div class="info">
+    <div class="info-row"><span>Mã đơn</span><strong id="orderId">—</strong></div>
+    <div class="info-row"><span>Họ tên</span><strong id="orderName">—</strong></div>
+    <div class="info-row"><span>Email</span><strong id="orderEmail">—</strong></div>
+    <div class="info-row"><span>Số tiền</span><strong id="orderAmount">—</strong></div>
+  </div>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-text">
+        <div class="step-title">Kiểm tra hộp thư email</div>
+        <div class="step-desc">Email xác nhận + link truy cập khóa học đã được gửi. Nếu không thấy, check tab Promotions/Spam.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-text">
+        <div class="step-title">Tham gia cộng đồng Be the Slay</div>
+        <div class="step-desc">Link nhóm kín Facebook có trong email xác nhận để nhận hỗ trợ trong suốt hành trình.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-text">
+        <div class="step-title">Bắt đầu Ngày 1–2</div>
+        <div class="step-desc">Mở video bài học đầu tiên và làm theo bài tập củng cố.</div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    Cần hỗ trợ? Liên hệ qua Facebook Page của chúng tôi
+  </footer>
+</div>
+
+<script>
+  const order = JSON.parse(sessionStorage.getItem('order') || '{}');
+  if (order.orderId) {
+    document.getElementById('orderId').textContent = order.orderId;
+    document.getElementById('orderName').textContent = order.name || '—';
+    document.getElementById('orderEmail').textContent = order.email || '—';
+    const amt = Number(order.totalAmount || 0).toLocaleString('en-US').replace(/,/g, '.');
+    document.getElementById('orderAmount').textContent = amt + 'đ';
+  }
+</script>
+</body>
+</html>

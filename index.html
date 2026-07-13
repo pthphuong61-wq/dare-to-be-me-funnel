@@ -1,0 +1,1540 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dare to be Me – Trở thành phiên bản giá trị cao</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Dancing+Script:wght@500;600;700&family=Playwrite+US+Modern:wght@100;200;300;400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─────────────────────────────────────────
+       RESET
+    ───────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    * { -webkit-font-smoothing: antialiased; }
+
+    /* ─────────────────────────────────────────
+       COLOR VARS
+    ───────────────────────────────────────── */
+    :root {
+      --bg:          #e2dada;
+      --brand:       #80716c;
+      --brand-dark:  #5c4f4b;
+      --brand-light: #a09490;
+      --nav-bg:      #2d2420;
+      --text:        #2d2420;
+      --text-mid:    #5a4a45;
+      --text-soft:   #8c7570;
+      --white:       #ffffff;
+      --gold:        #c9a882;
+      --cream:       #f5ede6;
+      --cream-dark:  #ecddd4;
+    }
+
+    /* ─────────────────────────────────────────
+       BASE
+    ───────────────────────────────────────── */
+    html { background: var(--bg); }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--text);
+      background: var(--bg);
+    }
+    h1, h2, h3, .serif { font-family: 'Noto Serif Display', Georgia, serif; }
+    .script            { font-family: 'Dancing Script', cursive; }
+
+    /* ─────────────────────────────────────────
+       PAGE WRAPPER — desktop 1200px
+    ───────────────────────────────────────── */
+    .page-wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: var(--bg);
+      min-height: 100vh;
+      position: relative;
+      box-shadow: 0 0 80px rgba(0,0,0,0.15);
+    }
+
+    /* ─────────────────────────────────────────
+       STICKY NAV — single horizontal row
+    ───────────────────────────────────────── */
+    .sticky-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--nav-bg);
+      padding: 12px 72px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .nav-row1 { flex-shrink: 0; display: flex; flex-direction: column; gap: 5px; }
+    .nav-row1-sub { display: flex; align-items: center; gap: 8px; }
+    .nav-row2 { flex: 1; display: flex; align-items: center; justify-content: flex-start; padding-left: 32px; }
+    .nav-row3 { flex-shrink: 0; margin-top: 0; }
+    .nav-row3 .btn-nav { width: auto; padding: 16px 52px; font-size: 26px; }
+    .nav-brand {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 22px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: white;
+    }
+    .badge-sale {
+      background: rgba(220,40,40,0.22);
+      color: #ff6b6b;
+      border: 1px solid rgba(220,40,40,0.5);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px; font-weight: 800;
+      padding: 3px 9px; border-radius: 3px; letter-spacing: 0.04em;
+    }
+    .price-old {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      color: rgba(255,255,255,0.45);
+      text-decoration: line-through;
+    }
+    .price-new {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 32px; font-weight: 700; color: var(--gold);
+    }
+    .btn-nav {
+      display: inline-block;
+      border: 1.5px solid rgba(255,255,255,0.55);
+      color: white; font-family: 'Montserrat', sans-serif;
+      font-size: 12px; font-weight: 800; letter-spacing: 0.1em;
+      padding: 9px 28px; text-align: center;
+      border-radius: 50px; text-decoration: none; white-space: nowrap;
+    }
+
+    /* ─────────────────────────────────────────
+       HERO — gradient left column, girl right
+    ───────────────────────────────────────── */
+    .hero-section {
+      position: relative;
+      height: 100vh;
+      min-height: 680px;
+      background: #2a2020;   /* dark brown base — prevents ANY white/light exposure */
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    /* Photo: right half of screen (50%), cover fills it completely — girl appears large */
+    .hero-photo {
+      position: absolute;
+      right: 0; top: 0;
+      width: 50%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center bottom;
+    }
+    /* Overlay: nâu đậm → nâu vừa → nâu nhạt — no bottom fade */
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to right,
+          rgba(8,  4,  2, 0.98)  0%,    /* near-black far left */
+          rgba(22, 14, 10,0.97) 12%,    /* very dark warm */
+          rgba(38, 26, 22,0.95) 26%,    /* dark brown */
+          rgba(42, 32, 28,0.88) 38%,    /* medium dark (text column) */
+          rgba(42, 32, 28,0.52) 52%,    /* lighter warm */
+          rgba(42, 32, 28,0.28) 64%,    /* light brown on photo */
+          rgba(42, 32, 28,0.15) 82%,    /* very light tint */
+          rgba(42, 32, 28,0.10)100%     /* minimal — never transparent/white */
+        );
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 80px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      max-width: 560px;
+    }
+    .hero-qualifier {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px; font-weight: 400; letter-spacing: 0.14em;
+      text-transform: uppercase; color: rgba(255,255,255,0.55);
+      line-height: 1.7; margin-bottom: 16px;
+    }
+    .hero-intro {
+      font-family: 'Noto Serif Display', serif;
+      font-size: 24px; font-weight: 400; color: rgba(255,255,255,0.8); margin-bottom: 0;
+    }
+    .hero-headline {
+      font-family: 'Noto Serif Display', serif;
+      font-size: clamp(52px, 5.5vw, 84px);
+      font-weight: 800; font-style: italic; color: var(--gold);
+      line-height: 1.05; margin: 6px 0 22px; letter-spacing: -1px;
+    }
+    .hero-subline {
+      font-family: 'Noto Serif Display', serif;
+      font-size: 24px; font-weight: 400; color: rgba(255,255,255,0.8);
+      line-height: 1.5; margin-bottom: 14px;
+    }
+    .hero-note {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 15px; color: rgba(255,255,255,0.58);
+      line-height: 1.75; margin-bottom: 32px; max-width: 440px;
+    }
+    .hero-note strong { font-weight: 600; color: rgba(255,255,255,0.78); }
+    .btn-hero {
+      display: inline-block;
+      background: var(--gold); color: #2d2420;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px; font-weight: 700; letter-spacing: 0.16em;
+      text-align: center; padding: 18px 52px;
+      border-radius: 50px; text-decoration: none;
+      text-transform: uppercase; align-self: flex-start;
+    }
+
+    /* ─────────────────────────────────────────
+       SECTION SEAL — hidden on desktop
+       (hero overlay already handles the transition)
+    ───────────────────────────────────────── */
+    .section-seal { display: none; }
+
+    /* ─────────────────────────────────────────
+       STORY SECTIONS — wide padding + photo float
+    ───────────────────────────────────────── */
+    .story-section {
+      padding: 80px 100px 92px;
+      background: var(--bg);
+      position: relative;
+      overflow: hidden;
+    }
+    .story-label {
+      display: block; font-family: 'Dancing Script', cursive;
+      font-size: 36px; font-weight: 600; color: var(--brand);
+      line-height: 1.3; margin-bottom: 4px;
+    }
+    .story-tag {
+      display: inline-block; background: rgba(128,113,108,0.12); color: var(--brand);
+      font-family: 'Montserrat', sans-serif; font-size: 9.5px; font-weight: 700;
+      letter-spacing: 0.08em; padding: 4px 11px; border-radius: 20px; margin-bottom: 10px;
+    }
+    .story-title {
+      font-family: 'Noto Serif Display', serif; font-size: 32px; font-weight: 700;
+      color: var(--text); line-height: 1.25; margin-bottom: 28px;
+    }
+    .story-title em { font-style: italic; color: var(--brand); }
+
+    /* ── Photo card ── */
+    .photo-card {
+      background: var(--white); border-radius: 14px; overflow: hidden;
+      box-shadow: 0 4px 28px rgba(45,36,32,0.13); margin-bottom: 28px; position: relative;
+    }
+    /* All story photos: standalone centered — no float, no text beside */
+    .story-section > .photo-card:not([style*="max-width:340px"]) {
+      float: none;
+      width: 100%;
+      max-width: 640px;
+      margin: 0 auto 36px;
+    }
+    .story-section::after { content: ''; display: table; clear: both; }
+
+    .photo-card-img-wrap { position: relative; }
+    .photo-card img.card-photo { width: 100%; display: block; object-fit: cover; object-position: top center; }
+    .photo-avatar {
+      position: absolute; top: 14px; left: 14px;
+      display: flex; flex-direction: column; align-items: center; gap: 5px;
+    }
+    .photo-avatar img {
+      width: 52px; height: 52px; border-radius: 50%; object-fit: cover;
+      object-position: top center; border: 2.5px solid white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.18); display: block;
+    }
+    .photo-avatar-label {
+      background: white; color: var(--brand); font-family: 'Montserrat', sans-serif;
+      font-size: 8.5px; font-weight: 700; letter-spacing: 0.06em;
+      padding: 2px 8px; border-radius: 20px; box-shadow: 0 1px 4px rgba(0,0,0,0.1); white-space: nowrap;
+    }
+    .photo-sticker {
+      position: absolute; top: 14px; right: 14px; background: white;
+      padding: 6px 9px; border-radius: 8px; transform: rotate(3deg);
+      box-shadow: 2px 3px 10px rgba(0,0,0,0.13);
+    }
+    .photo-sticker p { font-family: 'Dancing Script', cursive; font-size: 11px; color: var(--brand); line-height: 1.4; text-align: center; margin: 0; }
+    .photo-card-footer { padding: 12px 16px 14px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .photo-caption { font-family: 'Montserrat', sans-serif; font-size: 12px; font-style: italic; color: var(--text-soft); line-height: 1.5; flex: 1; }
+    .date-pill { background: var(--brand); color: white; font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 600; padding: 4px 10px; border-radius: 20px; white-space: nowrap; flex-shrink: 0; }
+
+    .story-body { font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 400; color: var(--text-mid); line-height: 1.75; position: relative; z-index: 1; text-align: justify; }
+    .story-body p { margin-bottom: 0.55rem; }
+    .story-body p:last-child { margin-bottom: 0; }
+    .story-body strong { font-weight: 600; color: var(--text); }
+    .story-body em { font-style: italic; }
+
+    .divider { text-align: center; color: var(--brand-light); font-size: 14px; letter-spacing: 10px; margin: 24px 0; }
+    .quote-block { border-radius: 12px; padding: 20px 22px 20px 26px; margin: 22px 0; border-left: 3px solid var(--brand); background: rgba(255,255,255,0.62); }
+    .quote-block p { font-family: 'Noto Serif Display', serif; font-size: 16px; font-weight: 500; font-style: italic; color: var(--text); line-height: 1.75; }
+
+    /* ─── Dark story sections ─── */
+    .story-section.dark { background: #80716c; }
+    .story-section.dark .story-label  { color: rgba(255,255,255,0.72); }
+    .story-section.dark .story-title  { color: #fff; }
+    .story-section.dark .story-body   { color: rgba(255,255,255,0.84); }
+    .story-section.dark .story-body strong { color: #fff; }
+    .story-section.dark .story-body em     { color: rgba(255,255,255,0.9); }
+    .story-section.dark .divider      { color: rgba(255,255,255,0.35); }
+    .story-section.dark .quote-block  { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.3); }
+    .story-section.dark .quote-block p { color: #fff; }
+    .story-section.dark .photo-caption { color: rgba(255,255,255,0.7); }
+
+    /* Section 3 quote bubble — compact on desktop, centered */
+    .quote-img-wrap { position: relative; z-index: 1; margin: 20px auto 24px; width: 34%; }
+    .quote-img-wrap img.quote-shape { width: 100%; margin: 0 auto; display: block; }
+    .quote-img-wrap .quote-text-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 12px 18% 12px 12%; }
+    .quote-img-wrap .quote-text-overlay p { font-family: 'Playwrite US Modern', cursive; font-size: 14px; font-weight: 300; color: #fff; text-align: center; line-height: 1.6; margin: 0; }
+
+    .doodle { position: absolute; pointer-events: none; z-index: 0; }
+
+    /* ─────────────────────────────────────────
+       BUTTONS
+    ───────────────────────────────────────── */
+    .btn-primary { display: inline-block; background: var(--brand); color: white; font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.12em; padding: 15px 36px; border-radius: 50px; text-decoration: none; text-align: center; }
+
+    /* ─────────────────────────────────────────
+       CONTENT SECTIONS — desktop padding
+    ───────────────────────────────────────── */
+    .section-remaining { background: var(--white); padding: 80px 100px; }
+    .section-bg        { background: var(--bg);    padding: 80px 100px; }
+    .offer-section     { background: var(--bg);    padding: 80px 100px; }
+    .max-content       { width: 100%; max-width: 1000px; margin: 0 auto; }
+
+    /* Override inline-padded sections */
+    #future, #pain, #roadmap, #pricing, #register {
+      padding-left:  100px !important;
+      padding-right: 100px !important;
+    }
+
+    .offer-card { background: white; border-radius: 20px; border: 1.5px solid rgba(128,113,108,0.15); overflow: hidden; }
+    .offer-header { background: var(--brand); color: white; padding: 20px 24px; text-align: center; }
+    .price-strike { text-decoration: line-through; color: var(--text-soft); }
+    details summary { cursor: pointer; list-style: none; }
+    details summary::-webkit-details-marker { display: none; }
+    .chevron { transition: transform 0.25s ease; }
+    details[open] .chevron { transform: rotate(180deg); }
+
+    /* ─────────────────────────────────────────
+       STICKY BOTTOM BAR — desktop width
+    ───────────────────────────────────────── */
+    .sticky-bottom {
+      position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
+      width: 100%; max-width: 1200px; z-index: 99;
+      background: rgba(45,36,32,0.97); backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 12px 72px; display: flex; align-items: center; justify-content: flex-end;
+    }
+    .sticky-bottom .btn-primary { background: var(--gold); color: #2d2420; padding: 14px 52px; }
+
+    /* ─────────────────────────────────────────
+       SECRET ENVELOPE
+    ───────────────────────────────────────── */
+    .secret-env { position: relative; }
+    .env-trigger { position: relative; cursor: pointer; border-radius: 12px; overflow: hidden; user-select: none; -webkit-tap-highlight-color: transparent; }
+    .env-trigger:active { opacity: 0.93; }
+
+    /* ═══════════════════════════════════════════
+       DESKTOP GRID LAYOUTS
+    ═══════════════════════════════════════════ */
+
+    /* Future Vision: 4 bullets → 2×2 */
+    #future .max-content > div { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 18px !important; }
+
+    /* 3 Bí Mật: 3 envelopes side by side */
+    #secrets .max-content > div { display: flex !important; flex-direction: row !important; align-items: flex-start !important; gap: 24px !important; }
+    #secrets .secret-env { flex: 1 1 0; min-width: 0; }
+    #secrets .secret-env[style*="margin-top:-30px"] { margin-top: 0 !important; }
+
+    /* Pain agitation: 2-col glass cards */
+    #pain .max-content > div:first-of-type { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 10px !important; margin-bottom: 36px !important; }
+
+    /* 7-Day Roadmap: vertical sequential — phases stack top to bottom */
+    #roadmap .max-content > div:first-of-type { display: flex !important; flex-direction: column !important; gap: 28px !important; }
+    #roadmap .max-content > div:nth-of-type(2), #roadmap .max-content > div:last-of-type { max-width: 740px; margin-left: auto; margin-right: auto; }
+
+    /* Proof From/To: 3 columns */
+    #proof .max-content > div:first-of-type { display: grid !important; grid-template-columns: 1fr 1fr 1fr !important; gap: 12px !important; margin-bottom: 44px !important; }
+    /* Photo timeline: one group per full row with arrows */
+    #proof .max-content > div:last-of-type { display: flex !important; flex-direction: column !important; gap: 0 !important; align-items: stretch !important; }
+    #proof .max-content > div:last-of-type > div[style*="padding:2px 0"] { display: block !important; transform: none !important; text-align: center; font-size: 28px !important; padding: 14px 0 !important; }
+
+    /* Merged benefits+pricing box: single column */
+    #pricing .max-content > div:first-of-type { display: block !important; }
+
+    /* Register: single centered column */
+    #register .max-content { max-width: 580px; }
+
+    /* FAQ: 2-col grid */
+    #faq .max-content > div:first-of-type { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 8px !important; margin-bottom: 44px !important; }
+
+    /* ═══════════════════════════════════════════
+       TEXT JUSTIFY — all body content
+    ═══════════════════════════════════════════ */
+    /* Apply justify to all content paragraphs across the page */
+    .story-body p,
+    #pain .max-content p,
+    #roadmap .max-content p,
+    #pricing .max-content p,
+    #proof .max-content p,
+    #register .max-content p,
+    #faq .max-content p,
+    #secrets .max-content p,
+    #future .max-content p,
+    .section-bg .max-content p,
+    .section-remaining .max-content p {
+      text-align: justify;
+    }
+
+    /* ═══════════════════════════════════════════
+       STORY CONTENT — centered column, max readable width
+    ═══════════════════════════════════════════ */
+    /* Constrain story body text to a comfortable reading width */
+    .story-section .story-body { max-width: 800px; margin-left: auto; margin-right: auto; }
+    .story-section .story-label { text-align: center; }
+    .story-section .story-title { text-align: center; white-space: normal; }
+
+    /* Quote blocks: narrower for emphasis */
+    .story-section > .quote-block  { max-width: 600px; margin-left: auto; margin-right: auto; padding: 28px 36px; text-align: center; }
+    .story-section .story-body .quote-block { max-width: 600px; margin-left: auto; margin-right: auto; }
+
+    /* Section 6 small photo (uniqlo): bigger on desktop */
+    .story-section > .photo-card[style*="max-width:340px"] { max-width: 560px !important; margin-left: auto !important; margin-right: auto !important; }
+
+    /* ── Quote blocks: always center text ── */
+    .quote-block p,
+    .story-body .quote-block p { text-align: center !important; }
+
+    /* ── story-body base size ── */
+    .story-body { font-size: 16px; line-height: 1.9; }
+
+    /* ═══════════════════════════════════════════════════════
+       FONT BOOST — target ONLY small inline sizes (11–13px)
+       These selectors NEVER touch large decorative text,
+       so there is no conflict with 65px / 60px / 58px etc.
+    ═══════════════════════════════════════════════════════ */
+    p[style*="font-size:11px"],
+    p[style*="font-size:11.5px"],
+    p[style*="font-size:12px"],
+    p[style*="font-size:12.5px"],
+    p[style*="font-size:13px"],
+    p[style*="font-size:13.5px"] {
+      font-size: 16px !important;
+      line-height: 1.9 !important;
+    }
+
+    /* ── Envelope: larger + caption text smaller ── */
+    #secrets { padding-left: 40px !important; padding-right: 40px !important; }
+    #secrets .max-content { max-width: 100%; }
+    #secrets .max-content > div { gap: 12px !important; }
+    /* Envelope flap caption — restore small sizes (un-boosted) */
+    #secrets .env-caption p:first-of-type { font-size: 14px !important; }
+    #secrets .env-caption p:last-of-type  { font-size: 12px !important; }
+    #secrets .env-letter p { font-size: 14px !important; }
+
+    /* ── Pricing box center + spacing ── */
+    #pricing .max-content p[style*="font-size:18px"] { text-align: center !important; margin: 0 0 18px !important; }
+    #pricing .max-content p[style*="font-size:28px"] { text-align: center !important; margin: 0 0 16px !important; letter-spacing: 0.04em; }
+    #pricing .max-content p[style*="font-size:96px"] { text-align: center !important; margin: 0 0 16px !important; }
+    #pricing .max-content p[style*="font-size:17px"] { text-align: center !important; }
+
+    /* ── Final close: center ── */
+    #faq .max-content p[style*="font-size:42px"] { text-align: center !important; line-height: 1.3; }
+
+    /* ── Failed interview quote: center ── */
+    .story-section .story-body p[style*="font-size:24px"] { text-align: center !important; }
+
+    /* ── Pricing box: constrain width + center ── */
+    #pricing .max-content > div[style*="background:#2d2420"][style*="border:2px solid var(--gold)"] {
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+
+
+<!-- ═══════════════════════════════════════════
+     STICKY TOP NAV dark, two-row
+═══════════════════════════════════════════ -->
+<nav class="sticky-nav">
+  <!-- Row 1: program name + badge & old price below -->
+  <div class="nav-row1">
+    <span class="nav-brand">Dare to be Me</span>
+    <div class="nav-row1-sub">
+      <span class="badge-sale">ưu đãi 84%</span>
+      <span class="price-old">5.399.000đ</span>
+    </div>
+  </div>
+  <!-- Row 2: new price centered -->
+  <div class="nav-row2">
+    <span class="price-new">443.000đ</span>
+  </div>
+  <!-- Row 3: CTA -->
+  <div class="nav-row3">
+    <a href="dang-ky.html" class="btn-nav">THAM GIA NGAY</a>
+  </div>
+</nav>
+
+
+<!-- ═══════════════════════════════════════════
+     SECTION 1 · HERO
+    text at top (above girl), headline gold single line
+═══════════════════════════════════════════ -->
+<section class="hero-section">
+  <img src="assets/hero-photo.jpg" alt="" class="hero-photo" />
+  <!-- Bottom fade: blends hero into next section — sits UNDER hero-overlay (DOM order) -->
+  <div style="position:absolute; bottom:0; left:0; width:100%; height:42%; background:linear-gradient(to top, #e2dada 0%, rgba(226,218,218,0.6) 40%, rgba(226,218,218,0) 100%); pointer-events:none;"></div>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <p class="hero-qualifier">Dành cho người mong muốn được tỏa sáng<br>với giá trị thực sự của bạn</p>
+    <h1 style="font-family:'Noto Serif Display',serif; font-size:clamp(22px,2.6vw,34px); font-weight:400; color:rgba(255,255,255,0.9); line-height:1.6; margin:0 0 22px; letter-spacing:0;">Cách trở nên <strong style="color:var(--gold); font-weight:800;">tự tin</strong> bằng chính năng lượng bên trong bạn, trong 14 ngày</h1>
+    <p class="hero-note">
+      Ngay cả khi bạn hướng nội rụt rè, ngại giao tiếp, cảm thấy bản thân toàn khuyết điểm, hay khi người khác không thích bạn.
+    </p>
+    <a href="dang-ky.html" class="btn-hero" style="margin-top:8px;">Tham gia ngay!</a>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     SECTION 2 · STORYBạn biết không...
+     Doodles: wavy lines top-right, leaf bottom-left
+═══════════════════════════════════════════ -->
+<section class="story-section">
+
+  <!-- Doodle: 4-ring messy oval around "cực kỳ rụt rè" -->
+  <svg class="doodle" viewBox="0 0 210 64" style="position:absolute;top:60px;left:60px;width:630px;height:192px;opacity:0.17;">
+    <!-- Ring 1main outline -->
+    <path d="M 12 32 C 15 10 54 1 105 3 C 156 1 196 12 198 32 C 196 52 154 62 105 60 C 54 62 12 54 12 32 Z"
+          stroke="#80716c" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <!-- Ring 2slightly outward, wobbly -->
+    <path d="M 7 29 C 11 5 52 -4 107 -2 C 162 -4 202 9 203 31 C 201 55 160 66 106 64 C 50 66 6 53 7 29 Z"
+          stroke="#80716c" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+    <!-- Ring 3inner, offset -->
+    <path d="M 16 34 C 20 14 57 6 105 8 C 153 6 192 16 194 34 C 192 52 151 60 105 58 C 57 60 14 52 16 34 Z"
+          stroke="#80716c" stroke-width="1" fill="none" stroke-linecap="round"/>
+    <!-- Ring 4tightest inner ring -->
+    <path d="M 22 32 C 26 16 62 10 105 12 C 148 10 184 20 186 32 C 184 44 146 52 105 50 C 62 52 20 46 22 32 Z"
+          stroke="#80716c" stroke-width="0.8" fill="none" stroke-linecap="round" opacity="0.8"/>
+  </svg>
+
+  <!-- Watermark: safe.png450px, placed just below the photo area -->
+  <img src="assets/safe.png" alt="" style="position:absolute;top:520px;right:-20px;width:450px;opacity:0.04;pointer-events:none;z-index:0;" />
+
+  <!-- Doodle: wavy water lines bottom-left -->
+  <svg class="doodle" viewBox="0 0 172 94" style="position:absolute;bottom:44px;left:-4px;width:516px;height:282px;opacity:0.09;">
+    <path d="M4 18 Q 26 4 48 18 Q 70 32 92 18 Q 114 4 136 18 Q 158 32 172 18"
+          stroke="#80716c" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M4 38 Q 26 24 48 38 Q 70 52 92 38 Q 114 24 136 38 Q 158 52 172 38"
+          stroke="#80716c" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M4 58 Q 26 44 48 58 Q 70 72 92 58 Q 114 44 136 58 Q 158 72 168 58"
+          stroke="#80716c" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M8 76 Q 30 62 52 76 Q 74 90 96 76 Q 118 62 140 76"
+          stroke="#80716c" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  </svg>
+
+  <!-- Line 2: h2 titlethe "punchline" -->
+  <h2 class="story-title" style="position:relative; z-index:1;">Phương từng mong mình là người hướng ngoại</h2>
+
+  <!-- Photo card: photo + date pill only -->
+  <div class="photo-card" style="position:relative; z-index:1; max-width:380px; margin:0 auto 28px;">
+    <div class="photo-card-img-wrap">
+      <img class="card-photo" src="assets/2018.jpg" alt="Ảnh năm 2018" style="aspect-ratio:3/4;" />
+    </div>
+    <div class="photo-card-footer">
+      <p class="photo-caption">Phương luôn chọn ở yên trong chính vỏ sò của mình vì ngại</p>
+    </div>
+  </div>
+
+  <div class="story-body">
+    <p>Hồi năm nhất, điều Phương mong muốn nhất là trở thành một người hướng ngoại năng động.<br>
+Vì lúc đó, Phương luôn phải vật lộn với sự lạc lõng của một cô sinh viên lần đầu xa nhà, từ quê ra Hà Nội để học tập.<br>
+Phương muốn mình phải nói nhiều hơn, chủ động bắt chuyện hơn để có thể hòa nhập.<br>
+Nhưng Phương không dám, vì Phương sợ nói sai rồi bị các bạn đánh giá.<br>
+Mỗi giờ ra chơi, Phương hay gục mặt xuống bàn ngủ.<br>
+Vì Phương không biết bắt chuyện kiểu gì cho tự nhiên.<br>
+Phương đinh ninh rằng cứ từ từ, dần dần mình sẽ hòa nhập được.<br>
+Nhưng điều đó chẳng bao giờ đến.<br>
+Hồi đấy, chỉ cần người ta nhớ tên mình, gọi "Phương ơi", là Phương thấy vui rồi.</p>
+
+    <p style="margin-top:1.4em">Năm hai, Phương đăng ký một lớp tín chỉ toàn người lạ.<br>
+Cho đến khi Phương nhìn thấy một người bạn cùng trường cấp 3 ngồi trong lớp.<br>
+Phương mừng như vớ được phao, vậy là kỳ này mình không còn lạc lõng nữa.<br>
+Phương luôn cố gắng nói chuyện, hành động làm sao để bạn thấy vui.<br>
+Phương liều mình điểm danh hộ cho bạn mỗi khi bạn nghỉ học.<br>
+Phương bỏ tiền đăng ký 4G 7k/ngày để phát wifi cho bạn dùng chung.<br>
+Lúc đầu Phương rất vui vì có đồng bọn.</p>
+
+    <p style="margin-top:1.4em">Nhưng dần dần, mọi chuyện bắt đầu sai lệch.<br>
+Bạn thất vọng khi Phương quên điểm danh hộ.<br>
+Bạn khó chịu khi Phương không đăng ký mạng cho bạn dùng.<br>
+Phương thấy bất tiện, nhưng không dám mở miệng từ chối.<br>
+Phương sợ mình đang ích kỷ, tính toán.<br>
+Và sợ hơn cả là bạn sẽ bỏ Phương lại một mình.</p>
+
+    <p style="margin-top:1.4em">Cho đến lần làm bài tập nhóm, bạn đã chạm đến giới hạn khiến Phương không thể tiếp tục.<br>
+Trước deadline 1 ngày, bạn nhắn tin ỉ ôi Phương làm hộ.<br>
+Lúc này Phương cảm thấy ấm ức vô cùng, vì mình cũng bận mà.<br>
+Nhưng cuối cùng Phương vẫn thức trắng đêm làm giúp vì sợ ảnh hưởng tập thể.<br>
+Phương khóc vì mệt mỏi, lo sợ nhưng vẫn không dám gạch tên bạn ra khỏi nhóm.<br>
+Từ lúc đó cho đến giờ, Phương và bạn ấy không còn liên lạc với nhau nữa.</p>
+  </div>
+
+  <div class="story-body">
+    <p>Phương nhận ra một bài học đắt giá:<br>
+Cố chiều lòng người khác không giúp Phương có thêm bạn bè.<br>
+Nó chỉ tạo ra sự ỷ lại và khiến Phương kiệt sức.<br>
+Đến giờ mỗi lần nhớ lại, Phương vẫn thấy hối hận.<br>
+Vì sợ bị một người bạn bỏ rơi, Phương đã bỏ rơi bản thân mình trước.</p>
+
+    <p style="margin-top:1.4em">Suốt những năm đại học, Phương luôn cố gắng nâng cấp ngoại hình.<br>
+Vì Phương nghĩ, một cô gái xinh đẹp sẽ dễ dàng hòa nhập hơn.<br>
+Đúng là từ lúc có ngoại hình, Phương nhận được nhiều cơ hội kết bạn hơn.<br>
+Nhưng những cơ hội đó chỉ tồn tại được trên messenger.<br>
+Bước ra đời thật, Phương lại rụt rè, ngại ngùng, vậy là chấm hết.</p>
+  </div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 3 · STORYBuổi 20/10
+     Pill/card reveal: rounded top slides up over section 2
+═══════════════════════════════════════════ -->
+<section class="story-section dark" style="padding-top:52px; border-radius:36px 36px 0 0; margin-top:-36px; position:relative; z-index:2;">
+
+  <!-- flower1.pngtop-right, 400px -->
+  <img src="assets/flower1.png" alt="" style="position:absolute;top:-20px;right:-40px;width:400px;opacity:0.16;pointer-events:none;z-index:0;" />
+  <!-- flower2.pngbottom-left, 300px -->
+  <img src="assets/flower2.png" alt="" style="position:absolute;bottom:-30px;left:-30px;width:300px;opacity:0.14;pointer-events:none;z-index:0;" />
+
+  <h2 class="story-title" style="position:relative; z-index:1; margin-bottom:0;">Phương vô tình nhận ra một niềm tin sai lầm</h2>
+
+  <!-- Quote: image-shaped bubblewrapper = image width so overlay centers precisely -->
+  <div style="position:relative; z-index:1; margin:20px auto 24px; width:34%;">
+    <img src="assets/quote-page-2.png" alt="" style="width:100%; display:block;" />
+    <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; padding:12px 24% 16px 16%; overflow:hidden;">
+      <p style="font-family:'Playwrite US Modern', cursive; font-size:16px; font-weight:300; color:#fff; text-align:center; line-height:1.65; margin:0;">"Mình cũng muốn được tự tin như thế"</p>
+    </div>
+  </div>
+
+  <div class="story-body" style="position:relative; z-index:1; padding-bottom:24px;">
+    <p>Cho đến một buổi liên hoan 20/10, Phương đã vô tình nhận ra sai lầm của bản thân.<br>
+Một người bạn, là cán bộ lớp, xung phong lên hát.<br>
+Bạn ấy không xinh theo những tiêu chuẩn thông thường.<br>
+Nhưng cách bạn ấy biểu diễn quá mức thu hút.<br>
+Bạn ấy tự tin tỏa sáng mà chẳng bận tâm ai dưới kia đang nghĩ gì.<br>
+Phương muốn được như bạn ấy, muốn được thoải mái bộc lộ cá tính.<br>
+Phương muốn trở thành một người tự tin.<br>
+Đó là lúc Phương nhận ra:<br>
+Để trở nên tự tin, Phương không cần phải quá xinh đẹp.<br>
+Phương chỉ cần thay đổi năng lượng bên trong mình.</p>
+
+    <p style="margin-top:1.4em">Nhận ra là một chuyện. Thay đổi được lại là chuyện khác.<br>
+Ngay sau đó không lâu, Phương đã tiếp tục trả giá bằng một buổi phỏng vấn thảm họa.</p>
+  </div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 4 · STORYTạch phỏng vấn
+     Same dark #80716c as section 3no transition between them
+═══════════════════════════════════════════ -->
+<section class="story-section dark" style="padding-top:20px;">
+
+  <div class="photo-card" style="position:relative; z-index:1; max-width:380px; margin:0 auto 28px;">
+    <div class="photo-card-img-wrap">
+      <img class="card-photo" src="assets/story-2.jpg" alt="Cuộc thi lớn" style="aspect-ratio:3/4;" />
+    </div>
+    <div class="photo-card-footer">
+      <p class="photo-caption" style="color:var(--text-mid);">Hình ảnh Phương sắp khóc tới nơi vì quên lời tại một cuộc thi chung kết toàn quốc</p>
+    </div>
+  </div>
+
+  <!-- Watermark: falling.pngextra large, centered, below photo -->
+  <img src="assets/falling.png" alt="" style="position:absolute;bottom:100px;left:50%;transform:translateX(-50%);width:440px;opacity:0.07;pointer-events:none;z-index:0;" />
+
+  <div class="story-body" style="position:relative; z-index:1;">
+    <p>Năm tư, Phương lọt vào vòng phỏng vấn MT của một tập đoàn.<br>
+Với sự ngây thơ lúc đó, Phương nghĩ:<br>
+Người hoàn hảo nhất sẽ là người được chọn.<br>
+Vì vậy, Phương chuẩn bị rất kỹ.<br>
+Viết ra giấy từng câu trả lời văn mẫu, học thuộc từng chữ.<br>
+Và liên tục nghĩ cách làm sao để giấu đi những khuyết điểm của bản thân.<br>
+Tất nhiên, càng khao khát sự hoàn hảo, Phương càng căng thẳng.<br>
+Và cuối cùng, sự căng thẳng đó đã khiến Phương sụp đổ ngay từ câu hỏi đầu tiên:<br>
+"Hãy giới thiệu một chút về bản thân em nhé!"</p>
+
+    <p style="margin-top:1.4em">Tim Phương bắt đầu đập loạn, mồ hôi túa ra.<br>
+Đầu óc trống rỗng, bao nhiêu thứ mình dày công học thuộc quên sạch.<br>
+Thất vọng, lo lắng, khó xử, bực bội.<br>
+Phương không giấu nổi những cảm xúc tồi tệ đó, trực tiếp thể hiện hết lên khuôn mặt.<br>
+Và sau đó, tất nhiên là không có sau đó.</p>
+
+    <div class="quote-block" style="text-align:center; padding:16px 20px 14px; border-left:none; border:1.5px solid rgba(255,255,255,0.32); background:rgba(255,255,255,0.22);">
+      <p style="font-size:24px; line-height:1.65; margin-bottom:0; text-align:center;">"Em làm không khí căng thẳng quá,<br />chị thấy không thoải mái.<br />Hãy là chính mình."<br /><span style="font-size:14px;opacity:0.55;display:block;text-align:right;">– HR phỏng vấn</span></p>
+    </div>
+  </div>
+
+</section>
+
+<!-- Transition: dark arc ends — S5 pill-card reveals in pink over this -->
+<div style="height:80px; background: linear-gradient(to bottom, #80716c 0%, #2e2420 100%);"></div>
+
+
+<!-- ═══════════════════════════════════════════
+     SECTION 5 · STORY — Phương thay đổi & Self-proof
+═══════════════════════════════════════════ -->
+<section class="story-section" style="padding-top:52px; padding-bottom:64px; border-radius:36px 36px 0 0; margin-top:-36px; position:relative; z-index:3;">
+
+  <img src="assets/pen.png" alt="" style="position:absolute;top:-10px;left:-40px;width:400px;opacity:0.26;pointer-events:none;z-index:0;transform:rotate(-12deg);" />
+  <img src="assets/book.png" alt="" style="position:absolute;bottom:0;right:-30px;width:300px;opacity:0.26;pointer-events:none;z-index:0;" />
+  <img src="assets/flower3.png" alt="" style="position:absolute;top:-20px;right:-40px;width:400px;opacity:0.26;pointer-events:none;z-index:0;" />
+
+  <h2 class="story-title" style="position:relative;z-index:1;margin-top:0;">Từ đó, Phương quyết tâm thay đổi.</h2>
+
+  <div class="story-body" style="position:relative;z-index:1;">
+    <p>Phương không cố gắng trở thành một cô gái hoàn hảo làm hài lòng mọi người nữa.<br>
+Phương muốn trở nên tự tin hơn, muốn sống là chính mình.</p>
+
+    <p style="margin-top:1.4em">Chỉ trong vài tháng, Phương đã thay đổi rất nhiều về mindset.<br>
+Phương tiếp tục ứng tuyển và lọt vào vòng phỏng vấn MT của một tập đoàn khác.<br>
+Áp lực gia tăng khi công ty lần này quy mô lớn hơn, mức độ cạnh tranh gay gắt hơn.<br>
+Nhưng lần này, Phương đã thành công và được HR dành lời khen.</p>
+  </div>
+
+  <div class="quote-block" style="text-align:center; padding:20px 24px 18px; border-left:none; border:1.5px solid rgba(128,113,108,0.28); background:rgba(128,113,108,0.08); position:relative; z-index:1;">
+    <p style="font-size:24px; line-height:1.65; margin-bottom:0; text-align:center;">"Năng lượng của em rất tốt,<br>mang lại cảm giác thoải mái dễ chịu<br>và cực kỳ gần gũi"<br><span style="font-size:14px;opacity:0.55;display:block;text-align:right;">– HR phỏng vấn</span></p>
+  </div>
+
+  <div class="story-body" style="position:relative;z-index:1;">
+    <p style="margin-top:1.4em">Điều hay ho là bằng cấp và kinh nghiệm lúc đó chẳng hơn gì nhiều so với lần trước.<br>
+Điểm khác biệt duy nhất là năng lượng mà Phương mang vào buổi phỏng vấn.<br>
+Phương không còn cố gồng để che giấu sự hồi hộp nữa.<br>
+Phương thẳng thắn thừa nhận với HR với một nụ cười: "Em hơi hồi hộp chị ạ".<br>
+Và đây chính là cách giúp Phương chinh phục buổi phỏng vấn.</p>
+  </div>
+
+  <!-- ảnh phỏng vấn thành công -->
+  <div class="photo-card" style="max-width:700px;margin:20px auto 28px;position:relative;z-index:1;">
+    <img class="card-photo" src="assets/uniqlo.jpg" alt="" />
+    <div class="photo-card-footer">
+      <p class="photo-caption">Email thông báo pass phỏng vấn vòng 1 của Phương tại công ty sau</p>
+    </div>
+  </div>
+
+  <div class="story-body" style="position:relative;z-index:1;">
+    <p>"Hãy là chính mình".<br>
+Nhờ lời khuyên ngắn gọn trong buổi phỏng vấn thất bại ngày đó.<br>
+Phương không chỉ thành công ở các lần phỏng vấn sau, mà còn đạt được những chiến thắng nhỏ trong công việc và các mối quan hệ.<br>
+Trở thành người mà chính bản thân cũng như bố mẹ chưa bao giờ nghĩ là mình có thể làm được.<br>
+Chỉ trong vài năm, Phương đã hoàn toàn thay đổi cuộc sống của mình:</p>
+  </div>
+
+  <!-- Transformation bullets -->
+  <div style="display:flex; flex-direction:column; gap:10px; margin:20px 0 28px; position:relative; z-index:1; max-width:800px; margin-left:auto; margin-right:auto;">
+    <div style="background:white; border-radius:12px; overflow:hidden; box-shadow:0 2px 12px rgba(128,113,108,0.1);">
+      <div style="padding:14px 16px 10px; border-left:3px solid #c4a8a0;">
+        <p style="font-family:'Montserrat',sans-serif; font-size:15px; color:var(--text-soft); font-style:italic; line-height:1.7; margin:0 0 8px;">Từ một cô sinh viên luôn loay hoay, vụng về tìm cách bắt chuyện với người ngồi bên cạnh...</p>
+        <p style="font-family:'Montserrat',sans-serif; font-size:15px; font-weight:600; color:var(--text); line-height:1.7; margin:0; padding-left:14px; border-left:2px solid var(--brand);">→ Đến người đại diện công ty tại các sự kiện lớn, đàm phán và ký kết hợp đồng trị giá hàng tỷ VNĐ.</p>
+      </div>
+    </div>
+    <div style="background:white; border-radius:12px; overflow:hidden; box-shadow:0 2px 12px rgba(128,113,108,0.1);">
+      <div style="padding:14px 16px 10px; border-left:3px solid #c4a8a0;">
+        <p style="font-family:'Montserrat',sans-serif; font-size:15px; color:var(--text-soft); font-style:italic; line-height:1.7; margin:0 0 8px;">Từ người không dám đăng một bài viết nêu quan điểm lên trang cá nhân vì sợ bị đánh giá...</p>
+        <p style="font-family:'Montserrat',sans-serif; font-size:15px; font-weight:600; color:var(--text); line-height:1.7; margin:0; padding-left:14px; border-left:2px solid var(--brand);">→ Đến người tự tin xuất hiện trên những Megalive lớn của thương hiệu để phục vụ cho việc quảng bá sản phẩm.</p>
+      </div>
+    </div>
+    <div style="background:white; border-radius:12px; overflow:hidden; box-shadow:0 2px 12px rgba(128,113,108,0.1);">
+      <div style="padding:14px 16px 10px; border-left:3px solid #c4a8a0;">
+        <p style="font-family:'Montserrat',sans-serif; font-size:15px; color:var(--text-soft); font-style:italic; line-height:1.7; margin:0 0 8px;">Từ một người luôn cố làm hài lòng người khác để được nhìn nhận...</p>
+        <p style="font-family:'Montserrat',sans-serif; font-size:15px; font-weight:600; color:var(--text); line-height:1.7; margin:0; padding-left:14px; border-left:2px solid var(--brand);">→ Trở thành người sở hữu những mối quan hệ chất lượng nhất nhờ vào năng lượng của bản thân.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Photo timeline (proof photos) -->
+  <div style="display:flex; flex-direction:column; gap:6px; position:relative; z-index:1; max-width:800px; margin:0 auto 28px;">
+    <div style="border-radius:14px; overflow:hidden; background:#f0e8e4; box-shadow:0 3px 14px rgba(128,113,108,0.14);">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:3px;">
+        <img src="assets/before.jpg" style="width:100%; aspect-ratio:3/4; object-fit:cover; display:block;" />
+        <img src="assets/before3.jpg" style="width:100%; aspect-ratio:3/4; object-fit:cover; display:block;" />
+      </div>
+      <p style="font-family:'Montserrat',sans-serif; font-size:11.5px; font-style:italic; color:var(--text-mid); text-align:center; padding:10px 14px; margin:0; line-height:1.5;">Từ một cô gái ngại ngùng, rụt rè mỗi khi thấy camera</p>
+    </div>
+    <div style="text-align:center; font-size:20px; color:var(--brand-light); line-height:1; padding:4px 0;">↓</div>
+    <div style="border-radius:14px; overflow:hidden; background:#f0e8e4; box-shadow:0 3px 14px rgba(128,113,108,0.14);">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:3px;">
+        <img src="assets/middle.jpg" style="width:100%; aspect-ratio:3/4; object-fit:cover; display:block;" />
+        <img src="assets/middle2.jpg" style="width:100%; aspect-ratio:3/4; object-fit:cover; display:block;" />
+      </div>
+      <p style="font-family:'Montserrat',sans-serif; font-size:11.5px; font-style:italic; color:var(--text-mid); text-align:center; padding:10px 14px; margin:0; line-height:1.5;">Phương dần bước chân ra khỏi vùng an toàn, xuất hiện nhiều hơn trước ống kính</p>
+    </div>
+    <div style="text-align:center; font-size:20px; color:var(--brand-light); line-height:1; padding:4px 0;">↓</div>
+    <div style="border-radius:14px; overflow:hidden; background:#f0e8e4; box-shadow:0 3px 14px rgba(128,113,108,0.14);">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:3px;">
+        <img src="assets/after.jpg" style="width:100%; aspect-ratio:3/4; object-fit:cover; display:block;" />
+        <img src="assets/after2.jpg" style="width:100%; aspect-ratio:3/4; object-fit:cover; display:block;" />
+      </div>
+      <p style="font-family:'Montserrat',sans-serif; font-size:11.5px; font-style:italic; color:var(--text-mid); text-align:center; padding:10px 14px; margin:0; line-height:1.5;">Và phát triển thần tốc chỉ sau 3 năm từ khi quyết tâm đập vỡ vỏ sò của mình</p>
+    </div>
+    <div style="text-align:center; font-size:20px; color:var(--brand-light); line-height:1; padding:4px 0;">↓</div>
+    <div style="border-radius:14px; overflow:hidden; background:#f0e8e4; box-shadow:0 3px 14px rgba(128,113,108,0.14);">
+      <img src="assets/mqh.png" style="width:100%; display:block; object-fit:cover;" />
+      <p style="font-family:'Montserrat',sans-serif; font-size:11.5px; font-style:italic; color:var(--text-mid); text-align:center; padding:10px 14px; margin:0; line-height:1.5;">Phương đã tìm được một nửa như ý sau khi tận dụng năng lượng tự tin của mình</p>
+    </div>
+  </div>
+
+  <div class="story-body" style="position:relative;z-index:1;">
+    <p>Thật ra Phương vẫn là chính mình thôi.<br>
+Không thể thay đổi thành một người hướng ngoại.<br>
+Cũng không biến thành cô bạn sôi nổi như cán bộ lớp.<br>
+Phương vẫn là một đứa hướng nội, thích ở một mình.<br>
+Nhưng năng lượng của Phương hiện tại không thua kém gì người hướng ngoại.<br>
+<strong style="color:var(--gold); font-weight:800;">Năng lượng tự tin khi được là chính mình.</strong></p>
+
+    <p style="margin-top:1.4em">Và đây là những bí mật Phương đã khám phá ra khi sở hữu thứ năng lượng tuyệt vời này:<br>
+Càng tự tin, bạn càng phát triển trong tất cả mọi mặt của cuộc sống, nghề nghiệp và cả tình yêu.<br>
+Đơn giản là vì nó giúp bạn tạo ra càng nhiều cơ hội hơn.<br>
+Khi có càng nhiều cơ hội, tỷ lệ thành công của bạn càng tăng.<br>
+Nhưng điều quan trọng nhất là bạn không cần gồng mình biến thành một con người khác.<br>
+Bạn chỉ cần là chính mình, và bạn tự tin với điều đó.</p>
+
+    <p style="margin-top:1.4em">Và tin tốt mà Phương muốn nói nhỏ với bạn là<br>
+Sự tự tin không phải tính cách, nó là kỹ năng được rèn luyện.<br>
+Và bất kỳ ai cũng có thể học được.<br>
+Đó là lý do Phương tạo ra Dare to be Me.</p>
+    <div class="divider">✦</div>
+  </div>
+
+  <!-- CTA sau proof -->
+  <div style="position:relative;z-index:1; text-align:center; margin:16px 0 8px;">
+    <a href="dang-ky.html" class="btn-primary" style="background:var(--gold); color:#2d2420; font-size:15px; padding:18px 52px; letter-spacing:0.1em;">Tham gia ngay!</a>
+  </div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECTION · 3 BÍ MẬTenvelope reveal
+═══════════════════════════════════════════ -->
+<section id="secrets" class="section-bg" style="padding-top:20px; background: linear-gradient(to bottom, #e2dada 0%, #e2dada 52%, #d0a898 64%, #a86850 76%, #6a3a2a 88%, #2d2420 100%);">
+  <div class="max-content">
+    <!-- Section titlesame font as story section titles -->
+    <h2 class="story-title" style="margin-bottom:22px; margin-left:60px; margin-right:60px;">Năng lượng tự tin mà Dare to be Me xây dựng được dựa trên <strong style="color:#d4a020; font-weight:900; font-size:1.15em; text-shadow:0 1px 12px rgba(212,160,32,0.35);">3 bí mật</strong></h2>
+
+    <!-- CTA hint -->
+    <p style="font-family:'Montserrat',sans-serif; font-size:12.5px; font-style:italic; color:var(--brand); text-align:center; margin-bottom:28px; letter-spacing:0.02em;">✉ Hãy nhấn mở từng bức thư để được bật mí</p>
+
+    <div style="display:flex; flex-direction:column; gap:0;">
+
+      <!-- ── Phong thư Bí Mật 1 ── -->
+      <div class="secret-env" data-open="false">
+        <div class="env-trigger" onclick="openEnv(this.closest('.secret-env'))">
+          <img src="assets/envelop.png" class="env-img-closed" style="width:100%; display:block; transition:opacity 0.2s;" />
+          <img src="assets/envelop-open.png" class="env-img-open" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity 0.2s;" />
+          <div class="env-caption" style="position:absolute; inset:0 0 52% 0; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; padding-top:21%; pointer-events:none; transition:opacity 0.2s;">
+            <p style="font-family:'Noto Serif Display',serif; font-size:15px; font-weight:700; line-height:1.4; color:#f5efe6; text-align:center; max-width:56%; margin:0 0 6px;">Hướng nội là tài sản giá trị</p>
+            <p style="font-family:'Montserrat',sans-serif; font-size:11px; color:#c9b99a; font-style:italic; text-align:center; max-width:54%; margin:0; line-height:1.45;">Khi bạn biết cách khai thác điểm mạnh của một người hướng nội, bạn sẽ trở nên cực kỳ thu hút trong một cuộc nói chuyện</p>
+          </div>
+        </div>
+        <div class="env-letter" style="display:none; transform:translateY(-24px); opacity:0; transition:transform 0.5s ease-out, opacity 0.5s ease-out; margin-top:2px;">
+          <div style="background:url('assets/letter.png') center / cover; background-color:#f5ede6; padding:44px 28px 28px;">
+            <p style="font-family:'Noto Serif Display',serif; font-size:20px; font-weight:700; color:#3d2820; margin:0 0 18px; line-height:1.3;">Bí mật 1: Hướng nội là tài sản giá trị</p>
+            <div style="font-family:'Montserrat',sans-serif; font-size:14px; line-height:1.8; color:#5c4f42;">
+              <p style="margin:0 0 12px;">Chúng ta thường sống trong một thế giới tôn vinh sự năng nổ và những người luôn biết cách khuấy động đám đông. Điều này vô tình khiến những người hướng nội cảm thấy mình bị "lỗi hệ thống", cảm thấy rụt rè và kém sức hút vì không thể giống như họ.</p>
+              <p style="margin:0 0 12px;">Có những lúc, bạn cố gắng gồng mình để trở nên năng nổ hơn, nói nhiều hơn, chỉ để không bị coi là "kém cỏi". Nhưng sự gồng mình đó chỉ khiến bạn thêm mệt mỏi mà không mang lại sự tự tin thực sự.</p>
+              <p style="margin:0 0 12px;">Hướng nội là một "hệ điều hành" đặc biệt mạnh nếu bạn biết khai thác đúng, giống như cách người hướng ngoại tận dụng năng lượng hoạt náo của họ vậy.</p>
+              <p style="margin:0 0 12px;">Sức hút mạnh mẽ nhất của người hướng nội không nằm ở việc chia sẻ/hoạt náo, mà nằm ở chiều sâu nội tâm và khả năng lắng nghe sâu sắc, một kỹ năng mà nhiều vĩ nhân sở hữu. Trong khi thế giới mải mê nói, người biết lắng nghe chính là người nắm giữ bí mật của sự kết nối chân thành.</p>
+              <p style="margin:0;">Khi bạn bắt đầu biết cách khai thác sự điềm tĩnh của một người hướng nội, bạn sẽ trở nên cực kỳ thu hút trong giao tiếp theo cách riêng của mình, khiến bất cứ ai tiếp xúc cũng cảm thấy bị lôi cuốn bởi sự sâu sắc và khả năng lắng nghe của bạn.</p>
+            </div>
+            <p style="font-family:'Dancing Script',cursive; font-size:20px; color:#8a7060; margin:20px 0 16px; text-align:right; font-style:italic;">Phương</p>
+            <div style="text-align:center; margin:0 0 4px;">
+              <a href="dang-ky.html" style="display:inline-block; background:var(--gold); color:#2d2420; font-family:'Montserrat',sans-serif; font-size:13px; font-weight:700; letter-spacing:0.1em; padding:14px 40px; border-radius:50px; text-decoration:none; text-transform:uppercase;">Tham gia ngay!</a>
+            </div>
+          </div>
+          <div style="text-align:center; padding:8px 0 4px; background:rgba(226,218,218,0.5);">
+            <button onclick="closeEnv(event, this.closest('.secret-env'))" style="background:none; border:none; cursor:pointer; font-family:'Montserrat',sans-serif; font-size:12px; color:#8a7060; letter-spacing:0.04em; padding:10px 24px;">↑ Đóng lại</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Phong thư Bí Mật 2 ── -->
+      <div class="secret-env" data-open="false" style="margin-top:-30px;">
+        <div class="env-trigger" onclick="openEnv(this.closest('.secret-env'))">
+          <img src="assets/envelop.png" class="env-img-closed" style="width:100%; display:block; transition:opacity 0.2s;" />
+          <img src="assets/envelop-open.png" class="env-img-open" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity 0.2s;" />
+          <div class="env-caption" style="position:absolute; inset:0 0 52% 0; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; padding-top:21%; pointer-events:none; transition:opacity 0.2s;">
+            <p style="font-family:'Noto Serif Display',serif; font-size:14px; font-weight:700; line-height:1.4; color:#f5efe6; text-align:center; max-width:58%; margin:0 0 6px;">Fake it 'til make it · Năng lượng là nhiên liệu</p>
+            <p style="font-family:'Montserrat',sans-serif; font-size:11px; color:#c9b99a; font-style:italic; text-align:center; max-width:54%; margin:0; line-height:1.45;">Sự tự tin thực sự không đến từ việc bạn có gì, mà đến từ cách bạn nhìn nhận chính bản thân bạn</p>
+          </div>
+        </div>
+        <div class="env-letter" style="display:none; transform:translateY(-24px); opacity:0; transition:transform 0.5s ease-out, opacity 0.5s ease-out; margin-top:2px;">
+          <div style="background:url('assets/letter.png') center / cover; background-color:#f5ede6; padding:44px 28px 28px;">
+            <p style="font-family:'Noto Serif Display',serif; font-size:20px; font-weight:700; color:#3d2820; margin:0 0 18px; line-height:1.3;">Bí mật 2: Fake it 'til make it · Năng lượng là nhiên liệu</p>
+            <div style="font-family:'Montserrat',sans-serif; font-size:14px; line-height:1.8; color:#5c4f42;">
+              <p style="margin:0 0 12px;">Có một niềm tin thầm lặng mà nhiều người trong chúng ta luôn mang theo: "Khi nào đủ xinh đẹp, đủ ưu tú, hoặc có những mối quan hệ chất lượng, thì lúc đó chúng ta mới sẵn sàng để tự tin và tỏa sáng".</p>
+              <p style="margin:0 0 12px;">Nhưng sự thật là, ngoại hình hay tài năng chỉ là những "công cụ" hỗ trợ, còn sự tự tin đến từ chính năng lượng bên trong bạn. Nếu bạn cứ mài giũa công cụ mà không có sẵn "nhiên liệu", thì dù làm gì, cỗ máy "tự tin" cũng sẽ không bao giờ chuyển động. Khi đó, bạn sẽ vô tình bỏ lỡ rất nhiều cơ hội trong cuộc đời. Và tin vui là, thứ "nhiên liệu" đó không tự sinh ra cũng không mất đi. Bao nhiêu năng lượng bạn đang đốt để biểu hiện rụt rè, tự ti, cũng chính là bấy nhiêu năng lượng bạn có thể chuyển thành sự tự tin, chỉ là bấy lâu nay nó đang chảy nhầm hướng mà thôi.</p>
+              <p style="margin:0 0 12px;">Sự tự tin thực sự không đến từ việc bạn có gì, mà đến từ cách bạn nhìn nhận chính mình. Khi bạn thôi đo giá trị bản thân bằng việc mình hơn hay kém người khác, và hiểu rằng mình vẫn luôn là điều đáng giá nhất trong cuộc đời của chính mình, bạn sẽ không cần một "phiên bản hoàn hảo" mới dám bắt đầu tỏa sáng.</p>
+              <p style="margin:0;">Và chính lúc bạn ngừng gồng mình để trở nên hoàn hảo, bạn lại tỏa ra một năng lượng tự tin, thoải mái, thứ năng lượng thực sự khiến bạn trở nên thu hút và lôi cuốn trong mắt mọi người.</p>
+            </div>
+            <p style="font-family:'Dancing Script',cursive; font-size:20px; color:#8a7060; margin:20px 0 16px; text-align:right; font-style:italic;">Phương</p>
+            <div style="text-align:center; margin:0 0 4px;">
+              <a href="dang-ky.html" style="display:inline-block; background:var(--gold); color:#2d2420; font-family:'Montserrat',sans-serif; font-size:13px; font-weight:700; letter-spacing:0.1em; padding:14px 40px; border-radius:50px; text-decoration:none; text-transform:uppercase;">Tham gia ngay!</a>
+            </div>
+          </div>
+          <div style="text-align:center; padding:8px 0 4px; background:rgba(226,218,218,0.5);">
+            <button onclick="closeEnv(event, this.closest('.secret-env'))" style="background:none; border:none; cursor:pointer; font-family:'Montserrat',sans-serif; font-size:12px; color:#8a7060; letter-spacing:0.04em; padding:10px 24px;">↑ Đóng lại</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Phong thư Bí Mật 3 ── -->
+      <div class="secret-env" data-open="false" style="margin-top:-30px;">
+        <div class="env-trigger" onclick="openEnv(this.closest('.secret-env'))">
+          <img src="assets/envelop.png" class="env-img-closed" style="width:100%; display:block; transition:opacity 0.2s;" />
+          <img src="assets/envelop-open.png" class="env-img-open" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity 0.2s;" />
+          <div class="env-caption" style="position:absolute; inset:0 0 52% 0; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; padding-top:21%; pointer-events:none; transition:opacity 0.2s;">
+            <p style="font-family:'Noto Serif Display',serif; font-size:14px; font-weight:700; line-height:1.4; color:#f5efe6; text-align:center; max-width:58%; margin:0 0 6px;">Maybe Next Time · Nam châm thu hút</p>
+            <p style="font-family:'Montserrat',sans-serif; font-size:11px; color:#c9b99a; font-style:italic; text-align:center; max-width:54%; margin:0; line-height:1.45;">Biết nói KHÔNG không phải là ích kỷ, mà là hành động khẳng định bạn không phải là một điều "mặc nhiên" trong cuộc đời người khác</p>
+          </div>
+        </div>
+        <div class="env-letter" style="display:none; transform:translateY(-24px); opacity:0; transition:transform 0.5s ease-out, opacity 0.5s ease-out; margin-top:2px;">
+          <div style="background:url('assets/letter.png') center / cover; background-color:#f5ede6; padding:44px 28px 28px;">
+            <p style="font-family:'Noto Serif Display',serif; font-size:20px; font-weight:700; color:#3d2820; margin:0 0 18px; line-height:1.3;">Bí mật 3: Maybe Next Time · Nam châm thu hút</p>
+            <div style="font-family:'Montserrat',sans-serif; font-size:14px; line-height:1.8; color:#5c4f42;">
+              <p style="margin:0 0 12px;">Nhiều người trong chúng ta vô tình trở thành một "people-pleaser", những người luôn cố gắng làm hài lòng tất cả mọi người xung quanh. Bạn mỉm cười chấp nhận những lời nhờ vả, hy sinh sự thoải mái và tiện nghi của bản thân, chỉ vì một nỗi sợ mơ hồ rằng nếu bạn từ chối, họ sẽ không còn quý bạn hoặc sẽ đánh giá bạn là ích kỷ.</p>
+              <p style="margin:0 0 12px;">Nhưng hãy thử dừng lại một chút và tự hỏi: Liệu một mối quan hệ mà chỉ một mình bạn phải đánh đổi giá trị để duy trì, có thực sự là một mối quan hệ chất lượng?</p>
+              <p style="margin:0 0 12px;">Biết nói KHÔNG là hành động khẳng định mình không phải là một điều "mặc nhiên" trong cuộc đời người khác.</p>
+              <p style="margin:0 0 12px;">Khi bạn thiết lập những ranh giới rõ ràng, bạn đang gửi một tín hiệu mạnh mẽ rằng bạn trân trọng giá trị của chính mình và người khác cũng phải như vậy. Chính sự tự tôn này sẽ khiến người đối diện thay đổi cách nhìn, bắt đầu tôn trọng bạn hơn và tìm cách trao đổi giá trị một cách công bằng.</p>
+              <p style="margin:0;">Khi bạn không còn cần "xin" sự chấp nhận, người khác sẽ tôn trọng bạn đúng như cách bạn tôn trọng chính mình.</p>
+            </div>
+            <p style="font-family:'Dancing Script',cursive; font-size:20px; color:#8a7060; margin:20px 0 16px; text-align:right; font-style:italic;">Phương</p>
+            <div style="text-align:center; margin:0 0 4px;">
+              <a href="dang-ky.html" style="display:inline-block; background:var(--gold); color:#2d2420; font-family:'Montserrat',sans-serif; font-size:13px; font-weight:700; letter-spacing:0.1em; padding:14px 40px; border-radius:50px; text-decoration:none; text-transform:uppercase;">Tham gia ngay!</a>
+            </div>
+          </div>
+          <div style="text-align:center; padding:8px 0 4px; background:rgba(226,218,218,0.5);">
+            <button onclick="closeEnv(event, this.closest('.secret-env'))" style="background:none; border:none; cursor:pointer; font-family:'Montserrat',sans-serif; font-size:12px; color:#8a7060; letter-spacing:0.04em; padding:10px 24px;">↑ Đóng lại</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FUTURE VISION — after 3 secrets
+═══════════════════════════════════════════ -->
+<section style="background:var(--bg); padding:72px 100px 80px;">
+  <div class="max-content">
+    <p class="serif" style="font-size:26px; font-weight:700; color:var(--brand); margin-bottom:8px; line-height:1.35;">Hãy tưởng tượng</p>
+    <h2 class="serif" style="font-size:26px; font-weight:700; color:var(--text); margin-bottom:28px; line-height:1.35;">một ngày rất gần trong tương lai, bạn có thể:</h2>
+    <div style="display:flex; flex-direction:column; gap:14px;">
+      <div style="background:rgba(255,255,255,0.72); border-radius:16px; padding:16px 18px; border:1px solid rgba(128,113,108,0.12); display:flex; gap:12px; align-items:flex-start;">
+        <span style="font-size:20px; flex-shrink:0;">✨</span>
+        <p style="font-family:'Montserrat',sans-serif; font-size:13.5px; color:var(--text-mid); line-height:1.8; margin:0;">Tự nhiên hòa nhập vào một nhóm bạn, đồng nghiệp một cách <strong style="color:var(--text);">tự tin, dễ gần hơn</strong></p>
+      </div>
+      <div style="background:rgba(255,255,255,0.72); border-radius:16px; padding:16px 18px; border:1px solid rgba(128,113,108,0.12); display:flex; gap:12px; align-items:flex-start;">
+        <span style="font-size:20px; flex-shrink:0;">🎯</span>
+        <p style="font-family:'Montserrat',sans-serif; font-size:13.5px; color:var(--text-mid); line-height:1.8; margin:0;">Dám từ chối <strong style="color:var(--text);">"thôi để dịp khác nhé"</strong> khi bạn thật sự không muốn, mà không còn trằn trọc sợ bị ghét</p>
+      </div>
+      <div style="background:rgba(255,255,255,0.72); border-radius:16px; padding:16px 18px; border:1px solid rgba(128,113,108,0.12); display:flex; gap:12px; align-items:flex-start;">
+        <span style="font-size:20px; flex-shrink:0;">💡</span>
+        <p style="font-family:'Montserrat',sans-serif; font-size:13.5px; color:var(--text-mid); line-height:1.8; margin:0;">Chủ động đề xuất ý tưởng trong cuộc họp <strong style="color:var(--text);">thay vì để người khác nói thay điều bạn đã nghĩ trong đầu</strong></p>
+      </div>
+      <div style="background:rgba(255,255,255,0.72); border-radius:16px; padding:16px 18px; border:1px solid rgba(128,113,108,0.12); display:flex; gap:12px; align-items:flex-start;">
+        <span style="font-size:20px; flex-shrink:0;">💛</span>
+        <p style="font-family:'Montserrat',sans-serif; font-size:13.5px; color:var(--text-mid); line-height:1.8; margin:0;">Cảm thấy thật hạnh phúc và tự hào vì biết cách <strong style="color:var(--text);">khai thác giá trị của người hướng nội</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     TẠI SAO TIPS KHÔNG WORK
+═══════════════════════════════════════════ -->
+<section style="background:#2d2420; padding:72px 100px 80px;">
+  <div class="max-content">
+    <h2 style="font-family:'Noto Serif Display',serif; font-size:28px; font-weight:800; color:#f5ede6; margin:0 0 28px; line-height:1.3;">Tại sao bạn đã đọc rất nhiều tips nhưng mãi chưa làm được</h2>
+
+    <div style="background:rgba(255,255,255,0.06); border-radius:14px; padding:20px 24px; margin-bottom:24px; border-left:3px solid var(--gold);">
+      <p style="font-family:'Dancing Script',cursive; font-size:24px; color:var(--gold); margin:0 0 12px; line-height:1.4;">"Đừng rụt rè nữa, tự tin lên!"</p>
+      <p style="font-family:'Montserrat',sans-serif; font-size:14px; color:#c0b0a6; line-height:1.9; margin:0;">Lời khuyên sáo rỗng này không giúp Phương xây dựng sự tự tin.<br>Và bạn biết rõ nó cũng không thể giúp bạn.</p>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:14px; margin-bottom:32px;">
+      <p style="font-family:'Montserrat',sans-serif; font-size:15px; color:#c0b0a6; line-height:1.9; margin:0;">Bạn biết nhìn thẳng vào mắt người đối diện là biểu hiện của sự tự tin, chứng tỏ bạn không hề thiếu kiến thức về cách tự tin hơn.</p>
+      <p style="font-family:'Montserrat',sans-serif; font-size:15px; color:#c0b0a6; line-height:1.9; margin:0;">Nhưng nếu không thật sự hiểu vì sao phải làm vậy, việc cố gồng để thực hiện từng tip chỉ khiến bạn ngày càng mệt mỏi.</p>
+      <p style="font-family:'Montserrat',sans-serif; font-size:15px; color:#c0b0a6; line-height:1.9; margin:0;">Đó là lý do bạn cứ mãi loay hoay căng thẳng mỗi khi nhìn vào mắt người khác, hay phải gồng mình <em style="color:#c9a898;">"nghĩ chuyện để nói"</em>.</p>
+      <p style="font-family:'Montserrat',sans-serif; font-size:15px; color:#c0b0a6; line-height:1.9; margin:0;"><strong style="color:#f0e0d4;">Thứ bạn thật sự thiếu không phải mẹo giao tiếp, mà là năng lượng tự tin từ bên trong.</strong><br>Cùng một con đường rõ ràng và một người đã đi qua để dẫn bạn đi.</p>
+    </div>
+
+    <div style="background:rgba(201,168,130,0.12); border-radius:16px; padding:28px 32px; border:1px solid rgba(201,168,130,0.3);">
+      <p style="font-family:'Noto Serif Display',serif; font-size:20px; font-weight:700; color:#f5ede6; margin:0 0 16px; line-height:1.35;">Vì vậy, ngay bây giờ bạn cần:</p>
+      <div style="display:flex; flex-direction:column; gap:12px;">
+        <div style="display:flex; gap:12px; align-items:flex-start;">
+          <span style="color:var(--gold); font-size:16px; flex-shrink:0; margin-top:4px;">✦</span>
+          <p style="font-family:'Montserrat',sans-serif; font-size:14px; color:#d4c4ba; line-height:1.8; margin:0;">Một con đường rõ ràng từ suy nghĩ cho đến hành động.</p>
+        </div>
+        <div style="display:flex; gap:12px; align-items:flex-start;">
+          <span style="color:var(--gold); font-size:16px; flex-shrink:0; margin-top:4px;">✦</span>
+          <p style="font-family:'Montserrat',sans-serif; font-size:14px; color:#d4c4ba; line-height:1.8; margin:0;">Một người đã từng đi qua đúng chỗ bạn đang đứng và tìm được lối ra.</p>
+        </div>
+      </div>
+      <p style="font-family:'Montserrat',sans-serif; font-size:15px; color:#f5ede6; font-weight:600; line-height:1.8; margin:16px 0 0;">Và Dare to be Me chính là con đường mà Phương đã thiết kế để bạn từng bước trở thành phiên bản tự tin hơn của chính mình.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     2 CÁCH XỬ LÝ
+═══════════════════════════════════════════ -->
+<section style="background:var(--bg); padding:72px 100px 80px;">
+  <div class="max-content">
+    <h2 style="font-family:'Noto Serif Display',serif; font-size:28px; font-weight:700; color:var(--text); margin:0 0 28px; line-height:1.35; text-align:left;">Hiện tại, bạn đang có 2 cách xử lý:</h2>
+
+    <!-- Cách 1 -->
+    <div style="background:white; border-radius:14px; padding:24px 28px; margin-bottom:0; border:1px solid rgba(128,113,108,0.15); border-top:3px solid #c4b0a8;">
+      <p style="font-family:'Montserrat',sans-serif; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#b0a098; margin:0 0 12px; font-weight:700;">Cách 1: Tự mày mò cho đến khi tìm được đích đến</p>
+      <div style="font-family:'Montserrat',sans-serif; font-size:14px; color:var(--text-mid); line-height:1.85;">
+        <p style="margin:0 0 10px;">Đó chính xác là con đường mà Phương đã đi. Nhưng tất cả đều diễn ra đa phần nhờ vào sự may mắn và vô tình mò ra được.</p>
+        <p style="margin:0 0 10px;">Nếu không có cơ hội tham gia cuộc phỏng vấn MT năm đó, Phương sẽ không thể biết được chính xác chìa khóa của vấn đề. Nếu không học cùng lớp với bạn cán bộ lớp, Phương sẽ không thể hiểu được rằng sự tự tin thu hút không hoàn toàn đến từ ngoại hình.</p>
+        <p style="margin:0 0 10px;">Và rất nhiều lúc Phương cảm thấy hoang mang vì không biết mình có đang làm đúng không, cũng không biết hỏi ai vì mỗi người một ý.</p>
+        <p style="margin:0 0 10px;">Ngay bây giờ bạn có thể tìm xem những video trên mạng, đọc những quyển sách hướng dẫn hoặc tham gia những khóa học chuyên môn về sự tự tin. Nhưng sẽ rất khó để có thể tổng hợp được những kiến thức đúng đắn và sắp xếp nó theo đúng lộ trình. Tiêu thụ quá nhiều kiến thức có thể khiến chúng ta quá tải và càng hoang mang hơn khi không biết nên áp dụng khi nào như thế nào.</p>
+        <p style="margin:0 0 10px;">Cá nhân Phương đã bỏ ra hàng chục triệu đồng để đầu tư cho các khóa học giúp bản thân trở nên tự tin hơn, thu hút hơn. Nhưng cũng đã lãng phí khá nhiều tiền cũng như thời gian vì không phải lúc nào cũng may mắn tìm đúng nguồn kiến thức phù hợp.</p>
+        <p style="margin:0;">Và quan trọng là những video đó rất có thể không phù hợp với những người hướng nội, cũng giống như câu <em>"Đừng rụt rè nữa, tự tin lên!"</em> vậy. Nếu áp dụng sai, bạn sẽ cảm thấy rất mệt mỏi vì lúc nào cũng phải gồng mình.</p>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin:4px 0;">
+      <span style="font-family:'Noto Serif Display',serif; font-size:13px; font-weight:700; color:var(--brand-light); background:var(--bg); padding:4px 14px; border-radius:50px;">hoặc</span>
+    </div>
+
+    <!-- Cách 2 -->
+    <div style="background:var(--brand-dark,#5c4f4b); border-radius:14px; padding:24px 28px; border-top:3px solid var(--gold);">
+      <p style="font-family:'Montserrat',sans-serif; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:rgba(210,185,155,0.85); margin:0 0 12px; font-weight:700;">Cách 2: Đi con đường mà Phương đã thiết kế sẵn dành riêng cho bạn</p>
+      <div style="font-family:'Montserrat',sans-serif; font-size:14px; color:#e8d8cc; line-height:1.85;">
+        <p style="margin:0 0 10px;">Để bạn không phải lãng phí quá nhiều thời gian và chi phí như Phương đã từng, Phương đã đúc kết tất cả những kiến thức phù hợp nhất thành một lộ trình chi tiết từng bước phù hợp dành cho người hướng nội.</p>
+        <p style="margin:0 0 10px;"><strong style="color:#f5ede6;">Dare to be Me không phải một khóa học 100% lý thuyết về cách làm gì để trở nên tự tin.</strong> Ở đây Phương muốn bạn đầu tiên phải hiểu chính bản thân mình, rồi nhờ đó chuyển hóa năng lượng tự tin từ bên trong.</p>
+        <p style="margin:0;">Phương không đứng ở đây với tư cách người đọc nhiều sách hay người đã từng tham gia các khóa học chuyên nghiệp. <strong style="color:#f5ede6;">Phương đứng ở đây vì Phương đã sống qua đúng những gì bạn đang trải qua, và tìm được lối ra chính xác nhất.</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     DARE TO BE ME — PROGRAM INTRO
+═══════════════════════════════════════════ -->
+<section style="background:#2d2420; padding:72px 100px 80px;">
+  <div class="max-content">
+    <p style="font-family:'Montserrat',sans-serif; font-size:13px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:rgba(201,168,130,0.7); text-align:center; margin:0 0 12px;">Xin giới thiệu</p>
+    <h2 style="font-family:'Noto Serif Display',serif; font-size:clamp(42px,4.5vw,64px); font-weight:800; color:var(--gold); margin:0 0 10px; line-height:1.15; text-align:center;">Dare to be Me</h2>
+    <p style="font-family:'Noto Serif Display',serif; font-size:clamp(22px,2.8vw,34px); font-weight:600; color:#f5ede6; margin:0 0 36px; line-height:1.35; text-align:center;">Thức tỉnh giá trị nội tại</p>
+
+    <p style="font-family:'Montserrat',sans-serif; font-size:15px; color:#c0b0a6; line-height:1.9; margin:0 0 20px;">Tham gia chương trình Dare to be Me, Phương sẽ không chỉ chia sẻ cho bạn một số bí quyết giao tiếp để tỏ ra tự tin hơn, mà còn đưa bạn đi đúng lộ trình mà Phương đã đi: thay đổi cách bạn nhìn nhận chính mình và môi trường, để năng lượng tự tin thực sự phát huy từ bên trong chứ không chỉ hành động biểu hiện bên ngoài.</p>
+    <p style="font-family:'Montserrat',sans-serif; font-size:15px; color:#c0b0a6; line-height:1.9; margin:0 0 20px;">Chương trình Dare to be Me gồm 7 video chia sẻ, mỗi 2 ngày bạn mở khóa một video mới. Lộ trình kéo dài 14 ngày chuyển hóa, dưới dạng video Phương thu sẵn. Bạn xem online, xem lại bất cứ lúc nào.</p>
+    <p style="font-family:'Montserrat',sans-serif; font-size:15px; color:#c0b0a6; line-height:1.9; margin:0 0 20px;">Nhịp tiếp thu được sắp xếp xen kẽ: ngày lẻ bạn xem video, vượt qua thử thách nhỏ, ngày chẵn bạn sẽ sử dụng góc nhìn mới này để xử lý tình huống và rèn luyện cách nhìn nhận vấn đề. Mỗi bài đều có bài tập rõ ràng để bạn biết cần gỡ bỏ điều gì và bước tiếp theo là gì, chứ không phải nghe xong rồi để đó.</p>
+    <p style="font-family:'Montserrat',sans-serif; font-size:15px; color:#c0b0a6; line-height:1.9; margin:0 0 32px;">Và bạn không cần băn khoăn liệu cách này có thật sự hiệu quả không. Vì nó chính là con đường đã kéo Phương ra khỏi vòng lặp tự ti, từ một người vô hình trở thành người dám sống đúng với bản thân. Thứ duy nhất bạn cần tự hỏi lúc này là: <strong style="color:#f0e0d4;">Dare to be Me có hợp với bạn không?</strong></p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     NẾU BẠN — qualification checklist
+═══════════════════════════════════════════ -->
+<section style="background:var(--bg); padding:72px 100px 80px;">
+  <div class="max-content">
+    <h2 style="font-family:'Noto Serif Display',serif; font-size:28px; font-weight:700; color:var(--text); margin:0 0 28px; line-height:1.35;">Nếu bạn...</h2>
+    <div style="display:flex; flex-direction:column; gap:14px; margin-bottom:36px;">
+      <div style="background:white; border-radius:14px; padding:16px 20px; display:flex; gap:14px; align-items:flex-start; border:1px solid rgba(128,113,108,0.12); box-shadow:0 2px 10px rgba(128,113,108,0.08);">
+        <span style="color:var(--gold); font-size:18px; flex-shrink:0; margin-top:2px;">✦</span>
+        <p style="font-family:'Montserrat',sans-serif; font-size:15px; color:var(--text-mid); line-height:1.75; margin:0;">Muốn giao tiếp thu hút hơn bằng việc khai thác đúng cách năng lực của người hướng nội</p>
+      </div>
+      <div style="background:white; border-radius:14px; padding:16px 20px; display:flex; gap:14px; align-items:flex-start; border:1px solid rgba(128,113,108,0.12); box-shadow:0 2px 10px rgba(128,113,108,0.08);">
+        <span style="color:var(--gold); font-size:18px; flex-shrink:0; margin-top:2px;">✦</span>
+        <p style="font-family:'Montserrat',sans-serif; font-size:15px; color:var(--text-mid); line-height:1.75; margin:0;">Muốn tự tin hơn mà không cần phải cố gồng để mọi thứ được hoàn hảo, để trở thành một người khác</p>
+      </div>
+      <div style="background:white; border-radius:14px; padding:16px 20px; display:flex; gap:14px; align-items:flex-start; border:1px solid rgba(128,113,108,0.12); box-shadow:0 2px 10px rgba(128,113,108,0.08);">
+        <span style="color:var(--gold); font-size:18px; flex-shrink:0; margin-top:2px;">✦</span>
+        <p style="font-family:'Montserrat',sans-serif; font-size:15px; color:var(--text-mid); line-height:1.75; margin:0;">Muốn sống theo cách mình muốn mà không cần quan tâm đến ánh mắt của người khác</p>
+      </div>
+      <div style="background:white; border-radius:14px; padding:16px 20px; display:flex; gap:14px; align-items:flex-start; border:1px solid rgba(128,113,108,0.12); box-shadow:0 2px 10px rgba(128,113,108,0.08);">
+        <span style="color:var(--gold); font-size:18px; flex-shrink:0; margin-top:2px;">✦</span>
+        <p style="font-family:'Montserrat',sans-serif; font-size:15px; color:var(--text-mid); line-height:1.75; margin:0;">Muốn trở nên thu hút hơn bằng chính năng lượng tự tin và tích cực của mình</p>
+      </div>
+    </div>
+    <div style="background:rgba(255,255,255,0.72); border-radius:16px; padding:24px 32px; border-left:3px solid var(--brand);">
+      <p style="font-family:'Montserrat',sans-serif; font-size:15px; font-weight:600; color:var(--text); line-height:1.75; margin:0;">Nếu bạn trả lời "có" với bất kỳ câu nào ở trên, thì lộ trình này Phương thiết kế là hoàn hảo dành cho bạn. Hãy đọc tiếp để biết chi tiết những gì bạn sẽ làm trong 14 ngày.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     SECTION 8 · LỘ TRÌNH 7 NGÀY  (dark bg)
+═══════════════════════════════════════════ -->
+<section id="roadmap" style="background:#2d2420; padding:52px 24px 72px;">
+  <div class="max-content">
+
+    <!-- Header -->
+    <p style="font-family:'Noto Serif Display',serif; font-size:44px; font-weight:800; color:var(--gold); margin:0 0 10px; line-height:1.15;">Lộ trình chi tiết 14 ngày</p>
+    <p style="font-family:'Noto Serif Display',serif; font-size:28px; font-weight:600; color:#f5ede6; margin:0 0 40px; line-height:1.3;">Dare to be Me · Thức tỉnh giá trị nội tại</p>
+
+    <!-- Intro description -->
+    <p style="font-family:'Montserrat',sans-serif; font-size:14px; color:#c0b0a6; line-height:1.9; margin:0 0 32px;">7 video bài học, mở khóa mỗi 2 ngày một video. Xem online, xem lại bất cứ lúc nào. Ngày lẻ bạn xem video và làm một bài tập nhỏ để củng cố. Ngày chẵn bạn hoàn thành một thử thách áp dụng vào tình huống thật của chính mình.</p>
+
+    <!-- Phase cards -->
+    <div style="display:flex; flex-direction:column; gap:20px;">
+
+      <!-- ── GIAI ĐOẠN 1 ── -->
+      <div style="border-radius:16px; overflow:hidden; box-shadow:0 4px 20px rgba(0,0,0,0.28);">
+        <div style="background:#e2dada; padding:14px 18px;">
+          <p style="font-family:'Noto Serif Display',serif; font-size:16px; font-weight:700; color:#3d2820; margin:0 0 3px; line-height:1.25;">GIAI ĐOẠN 1: GỠ BỎ</p>
+          <p style="font-family:'Montserrat',sans-serif; font-size:11.5px; color:#6a4e42; margin:0; line-height:1.5;">Tháo gỡ những yếu tố khiến bạn thu mình</p>
+        </div>
+        <div style="background:white;">
+          <!-- Day 1-2 -->
+          <div style="padding:16px 18px 14px; border-bottom:1.5px solid rgba(92,79,75,0.22);">
+            <p style="font-family:'Montserrat',sans-serif; font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:#3d2820; font-weight:700; margin:0 0 4px;">Day 1–2</p>
+            <p style="font-family:'Noto Serif Display',serif; font-size:14px; font-weight:700; color:var(--text); margin:0 0 7px; line-height:1.35;">Hướng nội không phải lý do khiến bạn thiếu tự tin</p>
+            <p style="font-family:'Montserrat',sans-serif; font-size:12px; color:var(--text-mid); line-height:1.75; margin:0 0 8px;">Sau video này, bạn sẽ hiểu được bản chất của sự rụt rè và tách bạch rõ ràng giữa rụt rè với tính cách hướng nội của mình. Từ đó, bạn thôi tự ghét bỏ tính cách của mình và biết chính xác cần xử lý điều gì.</p>
+            <p style="font-family:'Montserrat',sans-serif; font-size:12px; color:var(--brand); font-weight:500; margin:0;">✦ Bài tập củng cố + thử thách cá nhân hóa</p>
+          </div>
+          <!-- Day 3-4 -->
+          <div style="padding:16px 18px 14px; border-bottom:1.5px solid rgba(92,79,75,0.22);">
+            <p style="font-family:'Montserrat',sans-serif; font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:#3d2820; font-weight:700; margin:0 0 4px;">Day 3–4</p>
+            <p style="font-family:'Noto Serif Display',serif; font-size:14px; font-weight:700; color:var(--text); margin:0 0 7px; line-height:1.35;">Sức hút trong giao tiếp của người hướng nội</p>
+            <p style="font-family:'Montserrat',sans-serif; font-size:12px; color:var(--text-mid); line-height:1.75; margin:0 0 8px;">Người hướng nội có sẵn một lợi thế giao tiếp bẩm sinh mà người hướng ngoại khó có được. Sau video này, bạn sẽ biết cách khai thác lợi thế đó một cách tối ưu và ứng dụng vào giao tiếp.</p>
+            <p style="font-family:'Montserrat',sans-serif; font-size:12px; color:var(--brand); font-weight:500; margin:0;">✦ Bài tập củng cố + thử thách cá nhân hóa</p>
+          </div>
+          <!-- Day 5-6 -->
+          <div style="padding:16px 18px 14px; border-bottom:1.5px solid rgba(92,79,75,0.22);">
+            <p style="font-family:'Montserrat',sans-serif; font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:#3d2820; font-weight:700; margin:0 0 4px;">Day 5–6</p>
+            <p style="font-family:'Noto Serif Display',serif; font-size:14px; font-weight:700; color:var(--text); margin:0 0 7px; line-height:1.35;">Bạn cần điều kiện để tự tin, hay cần tự tin để tạo ra điều kiện?</p>
+            <p style="font-family:'Montserrat',sans-serif; font-size:12px; color:var(--text-mid); line-height:1.75; margin:0 0 8px;">Tự tin thật sự không đến từ ngoại hình, gia thế hay điều kiện ngoại cảnh. Và nó cũng không tự đến khi bạn ngồi chờ. Sau video này, bạn hiểu vì sao mình cần thúc đẩy năng lượng tự tin từ bên trong, thay vì chờ ngoại cảnh mang nó đến cho bạn.</p>
+            <p style="font-family:'Montserrat',sans-serif; font-size:12px; color:var(--brand); font-weight:500; margin:0;">✦ Bài tập củng cố + thử thách cá nhân hóa</p>
+          </div>
+          <!-- Day 7-8 -->
+          <div style="padding:16px 18px 18px;">
+            <p style="font-family:'Montserrat',sans-serif; font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:#3d2820; font-weight:700; margin:0 0 4px;">Day 7–8</p>
+            <p style="font-family:'Noto Serif Display',serif; font-size:14px; font-weight:700; color:var(--text); margin:0 0 7px; line-height:1.35;">Phải làm sao khi bạn đã cố thay đổi suy nghĩ nhưng vẫn chưa thể tự tin</p>
+            <p style="font-family:'Montserrat',sans-serif; font-size:12px; color:var(--text-mid); line-height:1.75; margin:0 0 8px;">Gần như không ai nói với bạn điều này: bạn biết mình phải tự tin là chính mình, nhưng đến lúc cần thì cả cơ thể vẫn cứng lại, vẫn không làm được. Sau video này, bạn sẽ biết phải xử lý thế nào khi nỗi sợ mãi không biến mất.</p>
+            <p style="font-family:'Montserrat',sans-serif; font-size:12px; color:var(--brand); font-weight:500; margin:0;">✦ Bài tập củng cố + thử thách cá nhân hóa</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── GIAI ĐOẠN 2 ── -->
+      <div style="border-radius:16px; overflow:hidden; box-shadow:0 4px 20px rgba(90,60,55,0.16);">
+        <div style="background:#e2dada; padding:14px 18px;">
+          <p style="font-family:'Noto Serif Display',serif; font-size:16px; font-weight:700; color:#3d2820; margin:0 0 3px; line-height:1.25;">GIAI ĐOẠN 2: ĐỐI DIỆN</p>
+          <p style="font-family:'Montserrat',sans-serif; font-size:11.5px; color:#6a4e42; margin:0; line-height:1.5;">Bước ra thế giới với năng lượng tự tin nhất</p>
+        </div>
+        <div style="background:white;">
+          <!-- Day 9-10 -->
+          <div style="padding:16px 18px 14px; border-bottom:1.5px solid rgba(92,79,75,0.22);">
+            <p style="font-family:'Montserrat',sans-serif; font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:#5a3010; font-weight:700; margin:0 0 4px;">Day 9–10</p>
+            <p style="font-family:'Noto Serif Display',serif; font-size:14px; font-weight:700; color:var(--text); margin:0 0 7px; line-height:1.35;">Sự thật về "ánh nhìn của thế giới" – Spotlight Effect</p>
+            <p style="font-family:'Montserrat',sans-serif; font-size:12px; color:var(--text-mid); line-height:1.75; margin:0 0 8px;">Sau video này, bạn sẽ hiểu được tâm lý và logic đánh giá của đám đông ngay khi họ nhìn thấy bạn: điều gì đang diễn ra trong đầu họ. Từ đó, bạn nhận ra nỗi lo bị đánh giá thật ra rất dễ giải quyết.</p>
+            <p style="font-family:'Montserrat',sans-serif; font-size:12px; color:#a08040; font-weight:500; margin:0;">✦ Bài tập củng cố + thử thách cá nhân hóa</p>
+          </div>
+          <!-- Day 11-12 -->
+          <div style="padding:16px 18px 14px; border-bottom:1.5px solid rgba(92,79,75,0.22);">
+            <p style="font-family:'Montserrat',sans-serif; font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:#5a3010; font-weight:700; margin:0 0 4px;">Day 11–12</p>
+            <p style="font-family:'Noto Serif Display',serif; font-size:14px; font-weight:700; color:var(--text); margin:0 0 7px; line-height:1.35;">Xử lý vòng lặp "tốt bụng gượng ép"</p>
+            <p style="font-family:'Montserrat',sans-serif; font-size:12px; color:var(--text-mid); line-height:1.75; margin:0 0 8px;">Bạn sẽ hiểu vì sao người ta luôn mặc định chọn bạn để nhờ vả, và tâm lý nối tiếp đằng sau mỗi phản ứng của bạn với lời nhờ vả đó. Sau video này, bạn biết khi nào nên và không nên từ chối, và làm gì để được tôn trọng dù bạn chọn hành xử theo cách nào.</p>
+            <p style="font-family:'Montserrat',sans-serif; font-size:12px; color:#a08040; font-weight:500; margin:0;">✦ Bài tập củng cố + thử thách cá nhân hóa</p>
+          </div>
+          <!-- Day 13-14 -->
+          <div style="padding:16px 18px 20px;">
+            <p style="font-family:'Montserrat',sans-serif; font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:#5a3010; font-weight:700; margin:0 0 4px;">Day 13–14</p>
+            <p style="font-family:'Noto Serif Display',serif; font-size:14px; font-weight:700; color:var(--text); margin:0 0 7px; line-height:1.35;">Dare to be Me</p>
+            <p style="font-family:'Montserrat',sans-serif; font-size:12px; color:var(--text-mid); line-height:1.75; margin:0 0 14px;">Video khép lại hành trình: vì sao từ giờ trở đi, dù ở đâu hay giữa những ai, điều đó cũng không còn quyết định sự tự tin của bạn nữa. Sau video này, bạn có một định danh mới và một bản đồ cụ thể cho chặng tiếp theo, giúp bạn nuôi dưỡng thói quen tự tin một cách vững chắc.</p>
+            <!-- 15-day bonus block -->
+            <div style="background:#faf4ee; border-radius:10px; padding:14px 16px; border-left:3px solid var(--gold);">
+              <p style="font-family:'Montserrat',sans-serif; font-size:12px; font-weight:700; color:var(--text); margin:0 0 7px;">🎁 Bonus: 15-Day Action Plan</p>
+              <p style="font-family:'Montserrat',sans-serif; font-size:12px; color:var(--text-mid); line-height:1.78; margin:0;">Bản đồ hành động 15 ngày: ngôn ngữ cơ thể, ánh mắt trong giao tiếp, hình ảnh cá nhân. Bạn biết chính xác cần luyện gì mỗi ngày để biến tự tin thành thói quen.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /phase cards -->
+
+    <!-- Community block -->
+    <div style="margin-top:28px; max-width:none !important; margin-left:0 !important; margin-right:0 !important;">
+      <p style="font-family:'Dancing Script',cursive; font-size:26px; color:#d4b090; margin:0 0 20px; line-height:1.4;"><strong style="font-weight:700;">Tất nhiên Phương sẽ không bỏ rơi bạn 🤝</strong></p>
+      <p style="font-family:'Montserrat',sans-serif; font-size:13px; color:#c8b4a6; line-height:1.85; margin:0 0 10px;">Sau khi đăng ký tham gia, bạn sẽ trở thành một thành viên của team Be the Slay.</p>
+      <p style="font-family:'Montserrat',sans-serif; font-size:13px; color:#c8b4a6; line-height:1.85; margin:0 0 10px;">Cộng đồng <strong style="color:#e0cfc4;">Be the Slay</strong> hoạt động dựa theo kim chỉ nam Hỗ trợ và cùng nhau phát triển. Vì ở đây, chúng ta hiểu được nỗi đau và sự khó khăn của nhau. Và chi phí để tham gia là <strong style="color:#f0e0d4;">HOÀN TOÀN MIỄN PHÍ.</strong></p>
+      <p style="font-family:'Montserrat',sans-serif; font-size:13px; color:#c8b4a6; line-height:1.85; margin:0;">Nếu bạn cần sự giúp đỡ về sự tự tin, tất cả những cô gái từ cộng đồng Be the Slay bao gồm Phương sẽ chạy đến để hỗ trợ bạn. Ngay từ lúc bạn bắt đầu hành trình này cùng Phương, Phương sẽ cung cấp cho bạn đầy đủ "la bàn", "phao",... để giúp bạn nhanh chóng xác định con đường đi đến sự tự tin nhanh nhất.</p>
+    </div>
+
+    <!-- Closing box full width -->
+    <div style="margin-top:24px; padding-bottom:20px;">
+      <div style="background:rgba(45,36,32,0.85); border:2px solid var(--gold); border-radius:18px; padding:36px 48px; box-shadow:0 0 40px rgba(201,168,130,0.25); text-align:center;">
+        <p style="font-family:'Noto Serif Display',serif; font-size:clamp(28px,3vw,40px); font-style:italic; color:#ddd0c4; line-height:1.7; margin:0; text-align:center; max-width:100%; width:100%;">Sau 14 ngày, bạn vẫn là chính mình, với một năng lượng tự tin hơn.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECTION · BONUS
+═══════════════════════════════════════════ -->
+<section style="background:var(--bg); padding:48px 24px 52px;">
+  <div class="max-content">
+    <p style="font-family:'Noto Serif Display',serif; font-size:clamp(28px,3vw,40px); font-weight:700; color:var(--text); margin:0 0 8px; line-height:1.3;">Chưa dừng lại ở đó.</p>
+    <p style="font-family:'Montserrat',sans-serif; font-size:16px; color:var(--text-mid); line-height:1.75; margin:0 0 28px;">Một khi bạn sở hữu chương trình Dare to be Me, bạn sẽ được nhận thêm một số bonus miễn phí.</p>
+    <div style="display:flex; flex-direction:column; gap:12px;">
+
+      <!-- Bonus 1 -->
+      <div style="background:white; border-radius:14px; overflow:hidden; border:1px solid rgba(128,113,108,0.12);">
+        <div style="background:var(--brand); padding:10px 16px; display:flex; justify-content:space-between; align-items:center; gap:12px;">
+          <div style="display:flex; align-items:center; gap:12px; flex:1; min-width:0;">
+            <p style="font-family:'Montserrat',sans-serif; font-size:11px; font-weight:700; color:white; letter-spacing:0.1em; margin:0; flex-shrink:0;">BONUS 1</p>
+            <p style="font-family:'Montserrat',sans-serif; font-size:13px; font-weight:700; color:white; margin:0; line-height:1.3;">👥 Tham gia cộng đồng group kín Be the Slay trên Facebook</p>
+          </div>
+          <p style="font-family:'Montserrat',sans-serif; font-size:11px; color:rgba(255,255,255,0.8); margin:0; text-decoration:line-through; flex-shrink:0;">1.000.000đ</p>
+        </div>
+        <div style="padding:14px 16px 16px;">
+          <p style="font-family:'Montserrat',sans-serif; font-size:12px; color:var(--text-mid); line-height:1.78; margin:0;">Đây là cộng đồng những cô gái tự tin của Phương trên Facebook, nơi các bạn để có thể giao lưu, hỗ trợ và đồng hành cùng nhau trên hành trình chuyển hóa. Ở đây, chúng ta sẽ không có bất kỳ phán xét, so sánh nào. Bạn có thể tập luyện sự tự tin của bạn trong cộng đồng trước, rồi tiếp tục ở các tập thể lớn hơn.<br><br>Chỉ những ai sở hữu khóa học của bọn mình mới được tham gia cộng đồng này.</p>
+        </div>
+      </div>
+
+      <!-- Bonus 2 -->
+      <div style="background:white; border-radius:14px; overflow:hidden; border:1px solid rgba(128,113,108,0.12);">
+        <div style="background:var(--brand); padding:10px 16px; display:flex; justify-content:space-between; align-items:center; gap:12px;">
+          <div style="display:flex; align-items:center; gap:12px; flex:1; min-width:0;">
+            <p style="font-family:'Montserrat',sans-serif; font-size:11px; font-weight:700; color:white; letter-spacing:0.1em; margin:0; flex-shrink:0;">BONUS 2</p>
+            <p style="font-family:'Montserrat',sans-serif; font-size:13px; font-weight:700; color:white; margin:0; line-height:1.3;">🎙️ Tham gia các buổi workshop hàng tháng của Phương</p>
+          </div>
+          <p style="font-family:'Montserrat',sans-serif; font-size:11px; color:rgba(255,255,255,0.8); margin:0; text-decoration:line-through; flex-shrink:0;">2.000.000đ</p>
+        </div>
+        <div style="padding:14px 16px 16px;">
+          <p style="font-family:'Montserrat',sans-serif; font-size:12px; color:var(--text-mid); line-height:1.78; margin:0;">Mỗi tháng Phương sẽ tổ chức 1 buổi Online Workshop đặc biệt để cùng các bạn thảo luận và tìm hướng xử lý cho những tình huống liên quan đến tâm lý tự tin, đồng hành chuyển đổi về mindset.<br>Khi đăng ký Dare to be Me, bạn sẽ được <strong style="color:var(--text);">miễn phí tham gia Workshop trong 24 tháng.</strong></p>
+        </div>
+      </div>
+
+      <!-- Bonus 3 -->
+      <div style="background:white; border-radius:14px; overflow:hidden; border:1px solid rgba(128,113,108,0.12);">
+        <div style="background:var(--brand); padding:10px 16px; display:flex; justify-content:space-between; align-items:center; gap:12px;">
+          <div style="display:flex; align-items:center; gap:12px; flex:1; min-width:0;">
+            <p style="font-family:'Montserrat',sans-serif; font-size:11px; font-weight:700; color:white; letter-spacing:0.1em; margin:0; flex-shrink:0;">BONUS 3</p>
+            <p style="font-family:'Montserrat',sans-serif; font-size:13px; font-weight:700; color:white; margin:0; line-height:1.3;">📌 Album Pinterest để định hình phong cách cá nhân</p>
+          </div>
+          <p style="font-family:'Montserrat',sans-serif; font-size:11px; color:rgba(255,255,255,0.8); margin:0; text-decoration:line-through; flex-shrink:0;">399.000đ</p>
+        </div>
+        <div style="padding:14px 16px 16px;">
+          <p style="font-family:'Montserrat',sans-serif; font-size:12px; color:var(--text-mid); line-height:1.78; margin:0;">Phương sẽ tặng bạn album định hình phong cách cá nhân bao gồm cách phối đồ cơ bản và phù hợp, cho từng dáng người, cho từng hoàn cảnh (đi làm, đi học, đi date). Các bạn hoàn toàn có thể dựa trên cách phối đồ trong album để tự định hình cho mình một phong cách phù hợp từng màu sắc, tông da, vóc dáng,... Đây sẽ là nền tảng ngoại hình hỗ trợ cho bạn trở nên tự tin hơn bao giờ hết.</p>
+        </div>
+      </div>
+
+      <!-- Bonus 4 -->
+      <div style="background:white; border-radius:14px; overflow:hidden; border:1px solid rgba(128,113,108,0.12);">
+        <div style="background:var(--brand); padding:10px 16px; display:flex; justify-content:space-between; align-items:center; gap:12px;">
+          <div style="display:flex; align-items:center; gap:12px; flex:1; min-width:0;">
+            <p style="font-family:'Montserrat',sans-serif; font-size:11px; font-weight:700; color:white; letter-spacing:0.1em; margin:0; flex-shrink:0;">BONUS 4</p>
+            <p style="font-family:'Montserrat',sans-serif; font-size:13px; font-weight:700; color:white; margin:0; line-height:1.3;">🎫 Ưu đãi 10% khi tham gia các chương trình cao cấp</p>
+          </div>
+          <p style="font-family:'Montserrat',sans-serif; font-size:11px; color:rgba(255,255,255,0.8); margin:0; flex-shrink:0;">Voucher độc quyền</p>
+        </div>
+        <div style="padding:14px 16px 16px;">
+          <p style="font-family:'Montserrat',sans-serif; font-size:12px; color:var(--text-mid); line-height:1.78; margin:0;">Ngay khi đăng ký Dare to be Me, bạn sẽ nhận 1 voucher ưu đãi 10% cho hành trình phát triển bản thân toàn diện về Tâm – Thân – Trí, xây dựng lối sống của một cô gái đúng với giá trị của mình, bao gồm mindset, ngoại hình, sức khỏe, phong cách, và đầu tư trí tuệ. Khi tham gia chương trình cao cấp, Phương sẽ trực tiếp đồng hành và hỗ trợ cùng bạn cho đến khi bạn đạt được đích đến "sự tự tin toàn diện" của bản thân.</p>
+        </div>
+      </div>
+
+      <!-- Bonus 5 -->
+      <div style="background:white; border-radius:14px; overflow:hidden; border:1px solid rgba(128,113,108,0.12);">
+        <div style="background:var(--brand); padding:10px 16px; display:flex; justify-content:space-between; align-items:center; gap:12px;">
+          <div style="display:flex; align-items:center; gap:12px; flex:1; min-width:0;">
+            <p style="font-family:'Montserrat',sans-serif; font-size:11px; font-weight:700; color:white; letter-spacing:0.1em; margin:0; flex-shrink:0;">BONUS 5</p>
+            <p style="font-family:'Montserrat',sans-serif; font-size:13px; font-weight:700; color:white; margin:0; line-height:1.3;">🗓️ 15-Day Action Plan</p>
+          </div>
+          <p style="font-family:'Montserrat',sans-serif; font-size:11px; color:rgba(255,255,255,0.8); margin:0; text-decoration:line-through; flex-shrink:0;">1.000.000đ</p>
+        </div>
+        <div style="padding:14px 16px 16px;">
+          <p style="font-family:'Montserrat',sans-serif; font-size:12px; color:var(--text-mid); line-height:1.78; margin:0;">Bản đồ hành động cho 15 ngày tiếp theo, từ tư duy thiết lập nội dung trong giao tiếp, điều chỉnh ngôn ngữ cơ thể, làm chủ ánh mắt, đến tái thiết kế hình ảnh cá nhân. Bạn sẽ biết chính xác bạn cần làm/tập luyện gì mỗi ngày để biến tự tin thành thói quen, duy trì năng lượng tự tin một cách bền vững.</p>
+        </div>
+      </div>
+
+      <!-- Bonus 6 -->
+      <div style="background:white; border-radius:14px; overflow:hidden; border:1px solid rgba(128,113,108,0.12);">
+        <div style="background:var(--brand); padding:10px 16px; display:flex; justify-content:space-between; align-items:center; gap:12px;">
+          <div style="display:flex; align-items:center; gap:12px; flex:1; min-width:0;">
+            <p style="font-family:'Montserrat',sans-serif; font-size:11px; font-weight:700; color:white; letter-spacing:0.1em; margin:0; flex-shrink:0;">BONUS 6</p>
+            <p style="font-family:'Montserrat',sans-serif; font-size:13px; font-weight:700; color:white; margin:0; line-height:1.3;">📚 Bộ câu hỏi và logic Kiến tạo tư duy giao tiếp</p>
+          </div>
+          <div style="display:flex; align-items:center; gap:8px; flex-shrink:0;">
+            <p style="font-family:'Montserrat',sans-serif; font-size:11px; color:rgba(255,255,255,0.5); margin:0; text-decoration:line-through;">5.000.000đ</p>
+            <p style="font-family:'Montserrat',sans-serif; font-size:11px; color:rgba(255,255,255,0.9); margin:0; font-weight:600;">Mua kèm chỉ 299.000đ</p>
+          </div>
+        </div>
+        <div style="padding:14px 16px 16px;">
+          <p style="font-family:'Montserrat',sans-serif; font-size:12px; color:var(--text-mid); line-height:1.78; margin:0 0 6px;">Bộ câu hỏi và các bước kiến tạo nội dung đắt giá dùng để rèn luyện tư duy giao tiếp, kiến tạo nội dung trình bày một cách logic, đúng thứ tự các ý và cực kỳ thuyết phục. Từ đó:</p>
+          <p style="font-family:'Montserrat',sans-serif; font-size:12px; color:var(--text-mid); line-height:1.78; margin:0 0 2px; padding-left:14px;">* Giúp bạn duy trì cuộc giao tiếp một cách tự nhiên thu hút mà không cần "cố nghĩ chuyện để nói".</p>
+          <p style="font-family:'Montserrat',sans-serif; font-size:12px; color:var(--text-mid); line-height:1.78; margin:0 0 6px; padding-left:14px;">* Trình bày các nội dung nói quan trọng một cách thuyết phục, bài bản.</p>
+          <p style="font-family:'Montserrat',sans-serif; font-size:12px; color:var(--text-mid); line-height:1.78; margin:0;">Đây là phần kỹ năng, dùng được sau khi bạn đã có nền tảng mindset từ Dare to be Me. Phương đã bỏ ra hơn <strong style="color:var(--text);">5.000.000đ</strong> để sở hữu bộ câu hỏi chủ lực này khi tham gia một khóa học giao tiếp từ một MC kỳ cựu, còn bạn chỉ cần chi thêm <strong style="color:var(--brand-dark);">299.000đ</strong> khi mua kèm Dare to be Me.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     SECTION 9 · BONUS + PRICING
+═══════════════════════════════════════════ -->
+<section id="pricing" style="background:var(--bg); padding:52px 24px 60px;">
+  <div class="max-content">
+
+    <!-- Pricing title -->
+    <h2 style="font-family:'Noto Serif Display',serif; font-size:clamp(42px,4.5vw,64px); font-weight:800; color:var(--gold); margin:0 0 10px; line-height:1.15; text-align:center;">Dare to be Me</h2>
+    <p style="font-family:'Noto Serif Display',serif; font-size:clamp(22px,2.8vw,34px); font-weight:600; color:var(--text); margin:0 0 36px; line-height:1.35; text-align:center;">Thức tỉnh giá trị nội tại</p>
+
+    <!-- MERGED Benefits + Pricing box -->
+    <div style="border-radius:24px; overflow:hidden; border:2px solid var(--gold); box-shadow:0 4px 28px rgba(128,113,108,0.18); margin-bottom:32px;">
+
+      <!-- Benefits top part (dark) — split left image / right content -->
+      <div style="background:#2d2420; display:flex; align-items:stretch;">
+        <!-- Left: image -->
+        <div style="flex:0 0 42%; background:#2d2420; display:flex; align-items:center; justify-content:center; padding:28px 24px; border-right:1px solid rgba(201,168,130,0.2);">
+          <img src="assets/lotrinh.png" style="width:100%; height:auto; object-fit:contain; display:block; border-radius:8px;" alt="" />
+        </div>
+        <!-- Right: content -->
+        <div style="flex:1; padding:36px 40px 32px;">
+          <p style="font-family:'Noto Serif Display',serif; font-size:20px; font-weight:800; color:#f5ede6; margin:0 0 22px; line-height:1.3;">Đây là toàn bộ giá trị bạn nhận được sau khi tham gia:</p>
+          <div style="display:flex; flex-direction:column; gap:14px;">
+            <div style="display:flex; gap:12px; align-items:flex-start;">
+              <span style="color:#4ec87a; font-size:17px; flex-shrink:0; margin-top:2px;">✔</span>
+              <p style="font-family:'Montserrat',sans-serif; font-size:14px; font-weight:600; color:#ddd0c4; line-height:1.75; margin:0;"><strong style="color:#f5ede6;">7 video bài học</strong> theo 2 giai đoạn: Gỡ bỏ → Đối diện, kéo dài 14 ngày chuyển hóa có cấu trúc rõ ràng</p>
+            </div>
+            <div style="display:flex; gap:12px; align-items:flex-start;">
+              <span style="color:#4ec87a; font-size:17px; flex-shrink:0; margin-top:2px;">✔</span>
+              <p style="font-family:'Montserrat',sans-serif; font-size:14px; font-weight:600; color:#ddd0c4; line-height:1.75; margin:0;"><strong style="color:#f5ede6;">Cộng đồng hỗ trợ trọn đời</strong>, bạn được vào cộng đồng trao đổi, đặt câu hỏi và học hỏi kinh nghiệm từ những người đồng hành</p>
+            </div>
+            <div style="display:flex; gap:12px; align-items:flex-start;">
+              <span style="color:#4ec87a; font-size:17px; flex-shrink:0; margin-top:2px;">✔</span>
+              <p style="font-family:'Montserrat',sans-serif; font-size:14px; font-weight:600; color:#ddd0c4; line-height:1.75; margin:0;"><strong style="color:#f5ede6;">Bài tập thực hành cá nhân hóa</strong> sau mỗi video, bạn biết chính xác cần làm gì, thay đổi gì, ngay hôm đó</p>
+            </div>
+            <div style="display:flex; gap:12px; align-items:flex-start;">
+              <span style="color:#4ec87a; font-size:17px; flex-shrink:0; margin-top:2px;">✔</span>
+              <p style="font-family:'Montserrat',sans-serif; font-size:14px; font-weight:600; color:#ddd0c4; line-height:1.75; margin:0;"><strong style="color:#f5ede6;">5 Bonus tặng kèm:</strong> Workshop hàng tháng (miễn phí 24 tháng), Album định hình phong cách cá nhân, Voucher ưu đãi 10%, 15-Day Action Plan sau khi kết thúc 14 ngày</p>
+            </div>
+            <div style="display:flex; gap:12px; align-items:flex-start;">
+              <span style="color:#4ec87a; font-size:17px; flex-shrink:0; margin-top:2px;">✔</span>
+              <p style="font-family:'Montserrat',sans-serif; font-size:14px; font-weight:600; color:#ddd0c4; line-height:1.75; margin:0;"><strong style="color:#f5ede6;">Cập nhật miễn phí trọn đời</strong>, mỗi lần Phương nâng cấp nội dung, bạn tự động nhận được phiên bản mới</p>
+            </div>
+            <div style="display:flex; gap:12px; align-items:flex-start;">
+              <span style="color:#4ec87a; font-size:17px; flex-shrink:0; margin-top:2px;">✔</span>
+              <p style="font-family:'Montserrat',sans-serif; font-size:14px; font-weight:600; color:#ddd0c4; line-height:1.75; margin:0;"><strong style="color:#f5ede6;">Lộ trình học rõ ràng, chi tiết</strong>, không cần mò mẫm, biết chính xác từng bước cần đi từ ngày 1 đến ngày 14</p>
+            </div>
+          </div>
+
+          <!-- Pricing inline -->
+          <div style="margin-top:32px; border-top:1px solid rgba(201,168,130,0.2); padding-top:28px;">
+            <p style="font-family:'Montserrat',sans-serif; font-size:12px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.55); margin:0 0 8px; text-align:center;">Hôm nay bạn chỉ cần chi trả</p>
+            <p style="font-family:'Montserrat',sans-serif; font-size:20px; font-weight:600; color:rgba(255,255,255,0.38); text-decoration:line-through; margin:0 0 4px; text-align:center;">5.399.000đ</p>
+            <p class="serif" style="font-size:clamp(48px,5.5vw,72px); font-weight:800; color:var(--gold); margin:0 0 10px; line-height:1; letter-spacing:-2px; text-align:center;">443.000đ</p>
+            <p style="font-family:'Montserrat',sans-serif; font-size:13px; font-weight:600; color:rgba(201,168,130,0.8); margin:0 0 20px; text-align:center; letter-spacing:0.06em;">Tiết kiệm 4.956.000đ · Giá ra mắt đầu tiên</p>
+            <a href="dang-ky.html" style="display:block; background:var(--gold); color:#2d2420; font-family:'Montserrat',sans-serif; font-size:15px; font-weight:800; letter-spacing:0.12em; padding:18px 24px; border-radius:50px; text-decoration:none; text-align:center; text-transform:uppercase; box-shadow:0 4px 24px rgba(201,168,130,0.45);">Đăng ký ngay →</a>
+            <p style="font-family:'Montserrat',sans-serif; font-size:12px; font-weight:700; color:rgba(201,168,130,0.9); text-align:center; margin:12px 0 0; letter-spacing:0.04em;">Hoàn tiền 100% nếu bạn không thấy giá trị</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cam kết hoàn tiền -->
+    <div style="background:white; border-radius:20px; padding:40px 44px; border:2px solid var(--brand); box-shadow:0 4px 28px rgba(128,113,108,0.14); margin-bottom:32px;">
+      <p style="font-family:'Noto Serif Display',serif; font-size:26px; font-weight:800; color:var(--text); margin:0 0 20px; line-height:1.2; text-align:center;">Cam kết hoàn tiền trong 30 ngày</p>
+      <p style="font-family:'Montserrat',sans-serif; font-size:15px; color:var(--text-mid); line-height:1.85; margin:0 0 14px;">Phương tin tưởng tuyệt đối vào lộ trình Dare to be Me mà Phương đã xây dựng, và Phương muốn bạn cũng có niềm tin đó.</p>
+      <p style="font-family:'Montserrat',sans-serif; font-size:15px; color:var(--text-mid); line-height:1.85; margin:0 0 14px;">Vì vậy, nếu sau 30 ngày bạn thấy chương trình không mang lại giá trị gì, Phương hoàn tiền 100%. Điều kiện:</p>
+      <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:16px;">
+        <p style="font-family:'Montserrat',sans-serif; font-size:14px; color:var(--text-mid); margin:0; padding-left:18px; border-left:2px solid var(--brand); line-height:1.75;">Bạn hoàn thành đầy đủ, đúng yêu cầu những bài tập Phương đưa ra</p>
+        <p style="font-family:'Montserrat',sans-serif; font-size:14px; color:var(--text-mid); margin:0; padding-left:18px; border-left:2px solid var(--brand); line-height:1.75;">Bạn làm theo những gì Phương hướng dẫn trong 15-Day Action Plan</p>
+      </div>
+      <p style="font-family:'Montserrat',sans-serif; font-size:14px; color:var(--text-mid); line-height:1.85; margin:0 0 10px;">Chỉ cần gửi tin nhắn qua page với tiêu đề <strong style="color:var(--text);">"Yêu cầu hoàn tiền"</strong>, Phương sẽ xử lý trong 10 ngày làm việc.</p>
+      <p style="font-family:'Montserrat',sans-serif; font-size:14px; color:var(--text-mid); line-height:1.85; margin:0 0 24px;">Phương sẽ vui vẻ hoàn tiền, và bạn vẫn được giữ toàn bộ tài liệu, video đã nhận, chỉ là bạn sẽ không còn là thành viên của cộng đồng Be the Slay nữa. Coi như một lời cảm ơn vì đã dành thời gian trải nghiệm.</p>
+      <a href="dang-ky.html" style="display:block; background:var(--brand); color:white; font-family:'Montserrat',sans-serif; font-size:14px; font-weight:700; letter-spacing:0.1em; padding:18px 24px; border-radius:50px; text-decoration:none; text-align:center; text-transform:uppercase;">Tham gia ngay với 0 rủi ro →</a>
+    </div>
+
+    <!-- Value comparison -->
+    <div style="background:white; border-radius:14px; padding:20px 18px; margin-bottom:24px; border:1px solid rgba(128,113,108,0.14); box-shadow:0 2px 12px rgba(128,113,108,0.08);">
+      <p style="font-family:'Noto Serif Display',serif; font-size:18px; font-weight:700; color:var(--text); margin:0 0 14px; line-height:1.3;">Trước khi quyết định, hãy nhìn lại những gì bạn đã chi mà vẫn chưa thay đổi được gì.</p>
+      <div style="display:flex; flex-direction:column; gap:10px; font-family:'Montserrat',sans-serif; font-size:15px; color:var(--text-mid); line-height:1.78;">
+        <p style="margin:0; padding-left:14px; border-left:2px solid rgba(128,113,108,0.25);">Một khóa học giao tiếp, kỹ năng tâm lý thường có giá từ 5–10 triệu. Bạn học xong, ghi chú đầy vở, nhưng vẫn chưa thật sự tự tin, vì cái bạn học là bí quyết, không phải sự thay đổi mindset từ bên trong.</p>
+        <p style="margin:0; padding-left:14px; border-left:2px solid rgba(128,113,108,0.25);">Nhiều cuốn sách tâm lý hay, bạn đọc xong gật gù, nhưng hai tuần sau không còn đọng lại được gì, vì đọc và thực sự thay đổi hành vi là hai chuyện khác nhau hoàn toàn.</p>
+        <p style="margin:0; padding-left:14px; border-left:2px solid rgba(128,113,108,0.25);">Những buổi hẹn từ chối không nổi: tiền xăng, tiền ăn, thời gian, và quan trọng hơn là năng lượng bạn mất đi sau đó.</p>
+        <p style="margin:0; padding-left:14px; border-left:2px solid rgba(128,113,108,0.25);">Những cơ hội đi qua vì bạn không dám đối diện nỗi sợ: vị trí thăng tiến không dám đề xuất, mối quan hệ không dám chủ động, lần phát biểu để người khác nói thay bạn.</p>
+      </div>
+      <div style="margin-top:16px; background:#2d2420; border-radius:12px; padding:16px 18px;">
+        <p style="font-family:'Montserrat',sans-serif; font-size:13px; font-weight:600; color:#f5ede6; margin:0; line-height:1.75;">443.000đ của Dare to be Me ít hơn nhiều so với những gì bạn có thể sẽ phải đánh đổi. Và thứ nó cho bạn là <em style="color:var(--gold); font-style:normal; font-weight:700;">sự chuyển hóa thật sự từ bên trong thay vì thêm hành động để bạn làm theo.</em></p>
+      </div>
+    </div>
+
+    <!-- CTA button -->
+    <a href="dang-ky.html" class="btn-primary" style="display:block; margin-bottom:12px; font-size:13px; letter-spacing:0.1em; background:var(--gold); color:#2d2420;">
+      THAM GIA DARE TO BE ME · 443.000đ
+    </a>
+    <p style="font-family:'Montserrat',sans-serif; font-size:11px; font-weight:600; color:var(--text-soft); text-align:center; margin:0 0 32px;">Hoàn tiền 100% nếu bạn không thấy giá trị</p>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 10 · ĐĂNG KÝ (closer → dang-ky.html, flow sepay-funnel)
+═══════════════════════════════════════════ -->
+<section id="register" style="background:var(--nav-bg); padding:52px 24px 60px;">
+  <div class="max-content" style="max-width:580px;">
+    <p style="font-family:'Dancing Script',cursive; font-size:38px; font-weight:700; color:var(--gold); margin:0 0 6px; line-height:1.15; text-align:center;">Sẵn sàng chưa?</p>
+    <p style="font-family:'Noto Serif Display',serif; font-size:16px; font-weight:600; color:#f5ede6; text-align:center; margin:0 0 28px; line-height:1.45;">Nhấn nút bên dưới để điền thông tin và nhận hướng dẫn truy cập ngay</p>
+    <a href="dang-ky.html" style="display:block; background:var(--gold); color:#2d2420; font-family:'Montserrat',sans-serif; font-size:14px; font-weight:800; letter-spacing:0.1em; padding:18px 24px; border-radius:50px; text-decoration:none; text-align:center; text-transform:uppercase; box-shadow:0 4px 20px rgba(201,168,130,0.4);">Đăng ký &amp; thanh toán ngay →</a>
+    <p style="font-family:'Montserrat',sans-serif; font-size:10.5px; color:rgba(255,255,255,0.3); text-align:center; margin:16px 0 0;">🔒 Thông tin của bạn được bảo mật tuyệt đối</p>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     SECTION 11 · FAQ + CLOSE
+═══════════════════════════════════════════ -->
+<section id="faq" class="section-bg" style="border-top:1px solid rgba(128,113,108,0.12);">
+  <div class="max-content">
+    <h2 class="serif" style="font-size:26px; font-weight:700; color:var(--text); margin-bottom:24px;">Câu hỏi thường gặp</h2>
+
+    <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:40px;">
+
+      <!-- FAQ 1 -->
+      <details style="background:white; border-radius:12px; overflow:hidden; border:1px solid rgba(128,113,108,0.12);">
+        <summary style="display:flex; align-items:center; justify-content:space-between; padding:14px 16px; font-family:'Montserrat',sans-serif; font-size:13px; font-weight:500; color:var(--text); gap:10px; cursor:pointer;">
+          <span>Bạn hướng nội bẩm sinh, liệu 14 ngày có đủ để thay đổi không?</span>
+          <svg class="chevron" style="width:16px;height:16px;color:var(--brand-light);flex-shrink:0;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </summary>
+        <div style="padding:0 16px 16px; font-family:'Montserrat',sans-serif; font-size:12.5px; color:var(--text-mid); line-height:1.85; border-top:1px solid rgba(128,113,108,0.1);">
+          <div style="margin-top:12px;">Không ai hứa trong 14 ngày có thể xóa sạch tất cả. Nhưng <strong style="color:var(--text);">14 ngày đủ để bạn phá vỡ lớp kén đầu tiên</strong>, thứ mà nhiều người mang suốt nhiều năm mà không biết cách thoát ra.<br /><br />Hướng nội không phải thứ cần "chữa". Bạn chỉ cần học cách khai thác nó đúng hướng.</div>
+        </div>
+      </details>
+
+      <!-- FAQ 2 -->
+      <details style="background:white; border-radius:12px; overflow:hidden; border:1px solid rgba(128,113,108,0.12);">
+        <summary style="display:flex; align-items:center; justify-content:space-between; padding:14px 16px; font-family:'Montserrat',sans-serif; font-size:13px; font-weight:500; color:var(--text); gap:10px; cursor:pointer;">
+          <span>Bạn rất bận, có theo kịp không?</span>
+          <svg class="chevron" style="width:16px;height:16px;color:var(--brand-light);flex-shrink:0;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </summary>
+        <div style="padding:0 16px 16px; font-family:'Montserrat',sans-serif; font-size:12.5px; color:var(--text-mid); line-height:1.85; border-top:1px solid rgba(128,113,108,0.1);">
+          <div style="margin-top:12px;">Mỗi ngày chỉ cần khoảng <strong style="color:var(--text);">20 đến 30 phút</strong> cho video và bài tập. Không cần sắp xếp lịch đặc biệt.</div>
+        </div>
+      </details>
+
+      <!-- FAQ 3 -->
+      <details style="background:white; border-radius:12px; overflow:hidden; border:1px solid rgba(128,113,108,0.12);">
+        <summary style="display:flex; align-items:center; justify-content:space-between; padding:14px 16px; font-family:'Montserrat',sans-serif; font-size:13px; font-weight:500; color:var(--text); gap:10px; cursor:pointer;">
+          <span>Bạn chưa từng làm gì như thế này, có bị lạc không?</span>
+          <svg class="chevron" style="width:16px;height:16px;color:var(--brand-light);flex-shrink:0;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </summary>
+        <div style="padding:0 16px 16px; font-family:'Montserrat',sans-serif; font-size:12.5px; color:var(--text-mid); line-height:1.85; border-top:1px solid rgba(128,113,108,0.1);">
+          <div style="margin-top:12px;">Lộ trình được thiết kế để bạn <strong style="color:var(--text);">bắt đầu từ vùng an toàn nhất và tăng dần</strong>. Ngày 1 và 2 bạn chỉ đăng bài trong group riêng, không ai ngoài những người trong khoá nhìn thấy.<br /><br />Không ai ném bạn ra giữa đám đông ngay từ đầu.</div>
+        </div>
+      </details>
+
+      <!-- FAQ 4 -->
+      <details style="background:white; border-radius:12px; overflow:hidden; border:1px solid rgba(128,113,108,0.12);">
+        <summary style="display:flex; align-items:center; justify-content:space-between; padding:14px 16px; font-family:'Montserrat',sans-serif; font-size:13px; font-weight:500; color:var(--text); gap:10px; cursor:pointer;">
+          <span>Nếu Bạn không thấy giá trị thì sao?</span>
+          <svg class="chevron" style="width:16px;height:16px;color:var(--brand-light);flex-shrink:0;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </summary>
+        <div style="padding:0 16px 16px; font-family:'Montserrat',sans-serif; font-size:12.5px; color:var(--text-mid); line-height:1.85; border-top:1px solid rgba(128,113,108,0.1);">
+          <div style="margin-top:12px;">Phương sẽ <strong style="color:var(--text);">hoàn tiền cho bạn 100%</strong>.</div>
+        </div>
+      </details>
+
+      <!-- FAQ 5 -->
+      <details style="background:white; border-radius:12px; overflow:hidden; border:1px solid rgba(128,113,108,0.12);">
+        <summary style="display:flex; align-items:center; justify-content:space-between; padding:14px 16px; font-family:'Montserrat',sans-serif; font-size:13px; font-weight:500; color:var(--text); gap:10px; cursor:pointer;">
+          <span>Giá này có tăng sau đợt ra mắt không?</span>
+          <svg class="chevron" style="width:16px;height:16px;color:var(--brand-light);flex-shrink:0;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </summary>
+        <div style="padding:0 16px 16px; font-family:'Montserrat',sans-serif; font-size:12.5px; color:var(--text-mid); line-height:1.85; border-top:1px solid rgba(128,113,108,0.1);">
+          <div style="margin-top:12px;">Có. <strong style="color:var(--text);">Đây là giá dành riêng cho những người đăng ký trong đợt đầu tiên.</strong></div>
+        </div>
+      </details>
+
+      <!-- FAQ 6 -->
+      <details style="background:white; border-radius:12px; overflow:hidden; border:1px solid rgba(128,113,108,0.12);">
+        <summary style="display:flex; align-items:center; justify-content:space-between; padding:14px 16px; font-family:'Montserrat',sans-serif; font-size:13px; font-weight:500; color:var(--text); gap:10px; cursor:pointer;">
+          <span>Bạn đã đọc nhiều thứ về tự tin rồi nhưng vẫn không thay đổi được...</span>
+          <svg class="chevron" style="width:16px;height:16px;color:var(--brand-light);flex-shrink:0;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </summary>
+        <div style="padding:0 16px 16px; font-family:'Montserrat',sans-serif; font-size:12.5px; color:var(--text-mid); line-height:1.85; border-top:1px solid rgba(128,113,108,0.1);">
+          <div style="margin-top:12px;">Thứ bạn thiếu không phải thêm thông tin, mà là <strong style="color:var(--text);">hành động được dẫn dắt từng bước một</strong>.<br /><br />Dare to be Me không cho bạn đọc thêm, nó cho bạn <em>làm</em>, từng ngày, từ vùng an toàn nhất cho đến khi bạn không còn cần vùng an toàn nữa.</div>
+        </div>
+      </details>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer style="background:var(--nav-bg); padding:32px 24px; text-align:center;">
+  <p style="font-family:'Montserrat',sans-serif; font-size:10px; letter-spacing:0.25em; text-transform:uppercase; color:rgba(255,255,255,0.35); margin-bottom:8px;">Dare to be Me</p>
+  <p style="font-family:'Montserrat',sans-serif; font-size:10px; color:rgba(255,255,255,0.25); line-height:1.6;">Kết quả mỗi người có thể khác nhau tùy mức độ cam kết và thực hành.<br />© 2025 Dare to be Me. All rights reserved.</p>
+</footer>
+
+
+</div><!-- end .page-wrap -->
+
+
+
+
+
+<script>
+/* ── Envelope reveal for 3 Bí Mật ── */
+function openEnv(el) {
+  if (el.dataset.open === 'true') return;
+  el.dataset.open = 'true';
+
+  el.querySelector('.env-img-closed').style.opacity = '0';
+  el.querySelector('.env-img-open').style.opacity = '1';
+  var cap = el.querySelector('.env-caption');
+  if (cap) cap.style.opacity = '0';
+
+  var letter = el.querySelector('.env-letter');
+  letter.style.display = 'block';
+  letter.getBoundingClientRect(); /* force reflow so transition fires */
+  letter.style.transform = 'translateY(0)';
+  letter.style.opacity = '1';
+}
+
+function closeEnv(e, el) {
+  e.stopPropagation();
+  el.dataset.open = 'false';
+
+  el.querySelector('.env-img-closed').style.opacity = '1';
+  el.querySelector('.env-img-open').style.opacity = '0';
+  var cap = el.querySelector('.env-caption');
+  if (cap) cap.style.opacity = '1';
+
+  var letter = el.querySelector('.env-letter');
+  letter.style.transform = 'translateY(-24px)';
+  letter.style.opacity = '0';
+  setTimeout(function() {
+    if (el.dataset.open === 'false') {
+      letter.style.display = 'none';
+      letter.style.transform = 'translateY(-24px)'; /* reset for next open */
+    }
+  }, 520);
+}
+</script>
+</body>
+</html>
