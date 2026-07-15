@@ -471,27 +471,57 @@
         padding-left: 20px !important;
         padding-right: 20px !important;
       }
-      .story-section { padding-top: 48px !important; padding-bottom: 56px !important; }
       .hero-section { padding-left: 0 !important; padding-right: 0 !important; }
 
-      /* Sticky nav: shrink + allow wrap instead of overflowing off-screen */
+      /* Sticky nav: 3 stacked rows (brand+badge / price / full-width CTA)
+         instead of 1 cramped horizontal row that overflows on narrow screens. */
       .sticky-nav {
-        padding: 8px 14px;
-        gap: 6px 10px;
-        flex-wrap: wrap;
+        padding: 8px 18px 9px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
       }
-      .nav-brand { font-size: 13px; letter-spacing: 0.12em; }
-      .badge-sale { font-size: 9px; padding: 2px 6px; }
-      .price-old { font-size: 10px; }
-      .price-new { font-size: 18px; }
-      .nav-row1 { gap: 2px; }
-      .nav-row2 { flex: 1 1 auto; padding-left: 8px; justify-content: flex-end; }
-      .nav-row3 .btn-nav { padding: 7px 14px; font-size: 10px; }
-      .btn-nav { padding: 6px 14px; font-size: 9px; letter-spacing: 0.06em; }
+      .nav-row1 {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 3px;
+      }
+      .nav-row1-sub { gap: 6px; }
+      .nav-brand { font-size: 11px; letter-spacing: 0.22em; }
+      .badge-sale { font-size: 9px; padding: 2px 7px; }
+      .price-old { font-size: 11px; }
+      .nav-row2 { flex: 0 0 auto; padding-left: 0; justify-content: flex-start; }
+      .price-new { font-size: 20px; }
+      .nav-row3 { margin-top: 8px; width: 100%; }
+      .nav-row3 .btn-nav { width: 100%; padding: 9px 0; font-size: 12px; }
 
-      /* Hero */
-      .hero-content { padding: 0 20px; max-width: 100%; }
-      .hero-note { max-width: 100%; }
+      /* Hero: full-bleed photo (not the 50%-width desktop split) with a
+         top-to-bottom overlay so headline stays readable, matching the
+         mobile-optimized reference layout. */
+      .hero-section { min-height: 580px; }
+      .hero-photo { left: 0; width: 100%; object-position: center 25%; }
+      .hero-overlay {
+        background: linear-gradient(to bottom,
+          rgba(45,36,32,0.88) 0%,
+          rgba(45,36,32,0.70) 18%,
+          rgba(45,36,32,0.32) 38%,
+          rgba(45,36,32,0.04) 55%,
+          rgba(45,36,32,0.0)  68%,
+          rgba(226,218,218,0.0) 78%,
+          rgba(226,218,218,0.85) 94%,
+          rgba(226,218,218,1.0) 100%);
+      }
+      .hero-content { padding: 24px 22px 40px; max-width: 100%; justify-content: flex-start; }
+      .hero-qualifier { font-size: 10px; }
+      .hero-note { font-size: 11.5px; max-width: 100%; }
+      .btn-hero { display: block; width: 100%; text-align: center; }
+
+      /* Story sections: tighter padding + smaller type for small screens */
+      .story-section { padding: 48px 20px 56px !important; }
+      .story-title { font-size: 24px; }
+      .story-body { font-size: 13.5px; }
 
       /* Envelopes / FAQ / other sections force-set to row/grid on desktop —
          let them fall back to natural single-column stacking on mobile */
@@ -512,9 +542,6 @@
         flex: 0 0 auto !important;
         width: 100%;
       }
-
-      .story-title { font-size: 24px; }
-      .max-content { padding: 0; }
     }
   </style>
 </head>
