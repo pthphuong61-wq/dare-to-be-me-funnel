@@ -312,12 +312,6 @@
     .offer-section     { background: var(--bg);    padding: 80px 100px; }
     .max-content       { width: 100%; max-width: 1000px; margin: 0 auto; }
 
-    /* Override inline-padded sections */
-    #future, #pain, #roadmap, #pricing, #register {
-      padding-left:  100px !important;
-      padding-right: 100px !important;
-    }
-
     .offer-card { background: white; border-radius: 20px; border: 1.5px solid rgba(128,113,108,0.15); overflow: hidden; }
     .offer-header { background: var(--brand); color: white; padding: 20px 24px; text-align: center; }
     .price-strike { text-decoration: line-through; color: var(--text-soft); }
@@ -347,38 +341,42 @@
     .env-trigger:active { opacity: 0.93; }
 
     /* ═══════════════════════════════════════════
-       DESKTOP GRID LAYOUTS
+       DESKTOP GRID LAYOUTS — desktop only, gated below
     ═══════════════════════════════════════════ */
+    @media (min-width: 901px) {
+      #future, #pain, #roadmap, #pricing, #register {
+        padding-left:  100px !important;
+        padding-right: 100px !important;
+      }
 
-    /* Future Vision: 4 bullets → 2×2 */
-    #future .max-content > div { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 18px !important; }
+      /* Future Vision: 4 bullets → 2×2 */
+      #future .max-content > div { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 18px !important; }
 
-    /* 3 Bí Mật: 3 envelopes side by side */
-    #secrets .max-content > div { display: flex !important; flex-direction: row !important; align-items: flex-start !important; gap: 24px !important; }
-    #secrets .secret-env { flex: 1 1 0; min-width: 0; }
+      /* 3 Bí Mật: 3 envelopes side by side */
+      #secrets .max-content > div { display: flex !important; flex-direction: row !important; align-items: flex-start !important; gap: 24px !important; }
+      #secrets .secret-env { flex: 1 1 0; min-width: 0; }
+
+      /* Pain agitation: 2-col glass cards */
+      #pain .max-content > div:first-of-type { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 10px !important; margin-bottom: 36px !important; }
+
+      /* 7-Day Roadmap: vertical sequential — phases stack top to bottom */
+      #roadmap .max-content > div:nth-of-type(2), #roadmap .max-content > div:last-of-type { max-width: 740px; margin-left: auto; margin-right: auto; }
+
+      /* Proof From/To: 3 columns */
+      #proof .max-content > div:first-of-type { display: grid !important; grid-template-columns: 1fr 1fr 1fr !important; gap: 12px !important; margin-bottom: 44px !important; }
+      #proof .max-content > div:last-of-type > div[style*="padding:2px 0"] { display: block !important; transform: none !important; text-align: center; font-size: 28px !important; padding: 14px 0 !important; }
+
+      /* Register: single centered column */
+      #register .max-content { max-width: 580px; }
+
+      /* FAQ: 2-col grid */
+      #faq .max-content > div:first-of-type { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 8px !important; margin-bottom: 44px !important; }
+    }
+
+    /* Rules that apply at every width */
     #secrets .secret-env[style*="margin-top:-30px"] { margin-top: 0 !important; }
-
-    /* Pain agitation: 2-col glass cards */
-    #pain .max-content > div:first-of-type { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 10px !important; margin-bottom: 36px !important; }
-
-    /* 7-Day Roadmap: vertical sequential — phases stack top to bottom */
     #roadmap .max-content > div:first-of-type { display: flex !important; flex-direction: column !important; gap: 28px !important; }
-    #roadmap .max-content > div:nth-of-type(2), #roadmap .max-content > div:last-of-type { max-width: 740px; margin-left: auto; margin-right: auto; }
-
-    /* Proof From/To: 3 columns */
-    #proof .max-content > div:first-of-type { display: grid !important; grid-template-columns: 1fr 1fr 1fr !important; gap: 12px !important; margin-bottom: 44px !important; }
-    /* Photo timeline: one group per full row with arrows */
-    #proof .max-content > div:last-of-type { display: flex !important; flex-direction: column !important; gap: 0 !important; align-items: stretch !important; }
-    #proof .max-content > div:last-of-type > div[style*="padding:2px 0"] { display: block !important; transform: none !important; text-align: center; font-size: 28px !important; padding: 14px 0 !important; }
-
-    /* Merged benefits+pricing box: single column */
     #pricing .max-content > div:first-of-type { display: block !important; }
-
-    /* Register: single centered column */
-    #register .max-content { max-width: 580px; }
-
-    /* FAQ: 2-col grid */
-    #faq .max-content > div:first-of-type { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 8px !important; margin-bottom: 44px !important; }
 
     /* ═══════════════════════════════════════════
        TEXT JUSTIFY — all body content
@@ -461,6 +459,62 @@
       max-width: 600px;
       margin-left: auto;
       margin-right: auto;
+    }
+
+    /* ═══════════════════════════════════════════
+       MOBILE — narrow viewports
+    ═══════════════════════════════════════════ */
+    @media (max-width: 900px) {
+      /* Generous side padding doesn't fit narrow screens — shrink it everywhere,
+         but hero-section stays edge-to-edge (its photo/overlay are absolutely positioned). */
+      section:not(.hero-section) {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+      }
+      .story-section { padding-top: 48px !important; padding-bottom: 56px !important; }
+      .hero-section { padding-left: 0 !important; padding-right: 0 !important; }
+
+      /* Sticky nav: shrink + allow wrap instead of overflowing off-screen */
+      .sticky-nav {
+        padding: 8px 14px;
+        gap: 6px 10px;
+        flex-wrap: wrap;
+      }
+      .nav-brand { font-size: 13px; letter-spacing: 0.12em; }
+      .badge-sale { font-size: 9px; padding: 2px 6px; }
+      .price-old { font-size: 10px; }
+      .price-new { font-size: 18px; }
+      .nav-row1 { gap: 2px; }
+      .nav-row2 { flex: 1 1 auto; padding-left: 8px; justify-content: flex-end; }
+      .nav-row3 .btn-nav { padding: 7px 14px; font-size: 10px; }
+      .btn-nav { padding: 6px 14px; font-size: 9px; letter-spacing: 0.06em; }
+
+      /* Hero */
+      .hero-content { padding: 0 20px; max-width: 100%; }
+      .hero-note { max-width: 100%; }
+
+      /* Envelopes / FAQ / other sections force-set to row/grid on desktop —
+         let them fall back to natural single-column stacking on mobile */
+      #secrets .max-content > div,
+      #faq .max-content > div:first-of-type,
+      #future .max-content > div,
+      #pain .max-content > div:first-of-type,
+      #proof .max-content > div:first-of-type {
+        display: flex !important;
+        flex-direction: column !important;
+      }
+
+      /* Pricing box: image + content side-by-side → stack */
+      #pricing div[style*="align-items:stretch"] {
+        flex-direction: column !important;
+      }
+      #pricing div[style*="flex:0 0 42%"] {
+        flex: 0 0 auto !important;
+        width: 100%;
+      }
+
+      .story-title { font-size: 24px; }
+      .max-content { padding: 0; }
     }
   </style>
 </head>
