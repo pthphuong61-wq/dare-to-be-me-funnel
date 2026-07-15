@@ -483,7 +483,7 @@
       }
       .nav-row1 {
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: flex-start;
         align-items: center;
         gap: 10px;
         margin-bottom: 3px;
@@ -499,7 +499,8 @@
 
       /* Hero: full-bleed photo (not the 50%-width desktop split) with a
          top-to-bottom overlay so headline stays readable, matching the
-         mobile-optimized reference layout. */
+         mobile-optimized reference layout. CTA pinned to the bottom
+         (margin-top:auto) so it never overlaps the founder's face. */
       .hero-section { min-height: 580px; }
       .hero-photo { left: 0; width: 100%; object-position: center 25%; }
       .hero-overlay {
@@ -513,10 +514,34 @@
           rgba(226,218,218,0.85) 94%,
           rgba(226,218,218,1.0) 100%);
       }
-      .hero-content { padding: 24px 22px 40px; max-width: 100%; justify-content: flex-start; }
+      .hero-content { padding: 24px 22px 32px; max-width: 100%; justify-content: flex-start; }
       .hero-qualifier { font-size: 10px; }
       .hero-note { font-size: 11.5px; max-width: 100%; }
-      .btn-hero { display: block; width: 100%; text-align: center; }
+      .btn-hero {
+        display: inline-block;
+        width: auto;
+        align-self: center;
+        margin-top: auto !important;
+        padding: 14px 34px;
+      }
+
+      /* "Vô tình nhận ra sai lầm" quote bubble — the 34% desktop width
+         crushes the text on phones; widen it and drop the % padding. */
+      .quote-bubble-wrap { width: 88% !important; }
+      .quote-bubble-wrap .quote-text-overlay {
+        padding: 8% 12% !important;
+      }
+      .quote-bubble-wrap .quote-text-overlay p { font-size: 13px !important; }
+
+      /* "3 bí mật" title — 60px side margins squeeze it into a narrow,
+         heavily-wrapped column on phones. */
+      #secrets .story-title { margin-left: 8px !important; margin-right: 8px !important; }
+
+      /* Bonus card headers: badge + title + price all on one row wrap the
+         title down to almost no width. Let the row wrap so the price drops
+         to its own line and the title gets full width to breathe. */
+      .bonus-head { flex-wrap: wrap; row-gap: 6px; }
+      .bonus-head > p:last-child { margin-left: auto; }
 
       /* Story sections: tighter padding + smaller type for small screens */
       .story-section { padding: 48px 20px 56px !important; }
@@ -707,9 +732,9 @@ Bước ra đời thật, Phương lại rụt rè, ngại ngùng, vậy là ch�
   <h2 class="story-title" style="position:relative; z-index:1; margin-bottom:0;">Phương vô tình nhận ra một niềm tin sai lầm</h2>
 
   <!-- Quote: image-shaped bubblewrapper = image width so overlay centers precisely -->
-  <div style="position:relative; z-index:1; margin:20px auto 24px; width:34%;">
+  <div class="quote-bubble-wrap" style="position:relative; z-index:1; margin:20px auto 24px; width:34%;">
     <img src="assets/quote-page-2.png" alt="" style="width:100%; display:block;" />
-    <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; padding:12px 24% 16px 16%; overflow:hidden;">
+    <div class="quote-text-overlay" style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; padding:12px 24% 16px 16%; overflow:hidden;">
       <p style="font-family:'Playwrite US Modern', cursive; font-size:16px; font-weight:300; color:#fff; text-align:center; line-height:1.65; margin:0;">"Mình cũng muốn được tự tin như thế"</p>
     </div>
   </div>
@@ -1286,7 +1311,7 @@ Và bất kỳ ai cũng có thể học được.<br>
 
       <!-- Bonus 1 -->
       <div style="background:white; border-radius:14px; overflow:hidden; border:1px solid rgba(128,113,108,0.12);">
-        <div style="background:var(--brand); padding:10px 16px; display:flex; justify-content:space-between; align-items:center; gap:12px;">
+        <div class="bonus-head" style="background:var(--brand); padding:10px 16px; display:flex; justify-content:space-between; align-items:center; gap:12px;">
           <div style="display:flex; align-items:center; gap:12px; flex:1; min-width:0;">
             <p style="font-family:'Montserrat',sans-serif; font-size:11px; font-weight:700; color:white; letter-spacing:0.1em; margin:0; flex-shrink:0;">BONUS 1</p>
             <p style="font-family:'Montserrat',sans-serif; font-size:13px; font-weight:700; color:white; margin:0; line-height:1.3;">👥 Tham gia cộng đồng group kín Be the Slay trên Facebook</p>
@@ -1300,7 +1325,7 @@ Và bất kỳ ai cũng có thể học được.<br>
 
       <!-- Bonus 2 -->
       <div style="background:white; border-radius:14px; overflow:hidden; border:1px solid rgba(128,113,108,0.12);">
-        <div style="background:var(--brand); padding:10px 16px; display:flex; justify-content:space-between; align-items:center; gap:12px;">
+        <div class="bonus-head" style="background:var(--brand); padding:10px 16px; display:flex; justify-content:space-between; align-items:center; gap:12px;">
           <div style="display:flex; align-items:center; gap:12px; flex:1; min-width:0;">
             <p style="font-family:'Montserrat',sans-serif; font-size:11px; font-weight:700; color:white; letter-spacing:0.1em; margin:0; flex-shrink:0;">BONUS 2</p>
             <p style="font-family:'Montserrat',sans-serif; font-size:13px; font-weight:700; color:white; margin:0; line-height:1.3;">🎙️ Tham gia các buổi workshop hàng tháng của Phương</p>
@@ -1314,7 +1339,7 @@ Và bất kỳ ai cũng có thể học được.<br>
 
       <!-- Bonus 3 -->
       <div style="background:white; border-radius:14px; overflow:hidden; border:1px solid rgba(128,113,108,0.12);">
-        <div style="background:var(--brand); padding:10px 16px; display:flex; justify-content:space-between; align-items:center; gap:12px;">
+        <div class="bonus-head" style="background:var(--brand); padding:10px 16px; display:flex; justify-content:space-between; align-items:center; gap:12px;">
           <div style="display:flex; align-items:center; gap:12px; flex:1; min-width:0;">
             <p style="font-family:'Montserrat',sans-serif; font-size:11px; font-weight:700; color:white; letter-spacing:0.1em; margin:0; flex-shrink:0;">BONUS 3</p>
             <p style="font-family:'Montserrat',sans-serif; font-size:13px; font-weight:700; color:white; margin:0; line-height:1.3;">📌 Album Pinterest để định hình phong cách cá nhân</p>
@@ -1328,7 +1353,7 @@ Và bất kỳ ai cũng có thể học được.<br>
 
       <!-- Bonus 4 -->
       <div style="background:white; border-radius:14px; overflow:hidden; border:1px solid rgba(128,113,108,0.12);">
-        <div style="background:var(--brand); padding:10px 16px; display:flex; justify-content:space-between; align-items:center; gap:12px;">
+        <div class="bonus-head" style="background:var(--brand); padding:10px 16px; display:flex; justify-content:space-between; align-items:center; gap:12px;">
           <div style="display:flex; align-items:center; gap:12px; flex:1; min-width:0;">
             <p style="font-family:'Montserrat',sans-serif; font-size:11px; font-weight:700; color:white; letter-spacing:0.1em; margin:0; flex-shrink:0;">BONUS 4</p>
             <p style="font-family:'Montserrat',sans-serif; font-size:13px; font-weight:700; color:white; margin:0; line-height:1.3;">🎫 Ưu đãi 10% khi tham gia các chương trình cao cấp</p>
@@ -1342,7 +1367,7 @@ Và bất kỳ ai cũng có thể học được.<br>
 
       <!-- Bonus 5 -->
       <div style="background:white; border-radius:14px; overflow:hidden; border:1px solid rgba(128,113,108,0.12);">
-        <div style="background:var(--brand); padding:10px 16px; display:flex; justify-content:space-between; align-items:center; gap:12px;">
+        <div class="bonus-head" style="background:var(--brand); padding:10px 16px; display:flex; justify-content:space-between; align-items:center; gap:12px;">
           <div style="display:flex; align-items:center; gap:12px; flex:1; min-width:0;">
             <p style="font-family:'Montserrat',sans-serif; font-size:11px; font-weight:700; color:white; letter-spacing:0.1em; margin:0; flex-shrink:0;">BONUS 5</p>
             <p style="font-family:'Montserrat',sans-serif; font-size:13px; font-weight:700; color:white; margin:0; line-height:1.3;">🗓️ 15-Day Action Plan</p>
@@ -1356,7 +1381,7 @@ Và bất kỳ ai cũng có thể học được.<br>
 
       <!-- Bonus 6 -->
       <div style="background:white; border-radius:14px; overflow:hidden; border:1px solid rgba(128,113,108,0.12);">
-        <div style="background:var(--brand); padding:10px 16px; display:flex; justify-content:space-between; align-items:center; gap:12px;">
+        <div class="bonus-head" style="background:var(--brand); padding:10px 16px; display:flex; justify-content:space-between; align-items:center; gap:12px;">
           <div style="display:flex; align-items:center; gap:12px; flex:1; min-width:0;">
             <p style="font-family:'Montserrat',sans-serif; font-size:11px; font-weight:700; color:white; letter-spacing:0.1em; margin:0; flex-shrink:0;">BONUS 6</p>
             <p style="font-family:'Montserrat',sans-serif; font-size:13px; font-weight:700; color:white; margin:0; line-height:1.3;">📚 E-book Tâm lý hội thoại và làm chủ kỹ năng giao tiếp</p>
