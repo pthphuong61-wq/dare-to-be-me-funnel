@@ -138,6 +138,8 @@
       document.getElementById('bump2Row').style.display = b2 ? 'flex' : 'none';
       updateQR(total);
       updateOrderAPI(b1, b2, total);
+      order.totalAmount = total;
+      sessionStorage.setItem('order', JSON.stringify(order));
     });
   });
 
